@@ -54,17 +54,15 @@ function LoginForm(){
                 <Label>
                     Username
                 </Label>
-                <Input type = 'text' name = 'username' ref={register({
-                     validate: value => value !== "admin" || "Nice try!"
-                    })}
+                <Input type = 'text' name = 'username' ref={register({required: true, max: 50, min: 15, maxLength: 50, message: 'Something wrong with your username!'})}
                 />
-                {errors.username && errors.username.message}
+                {errors.username && 'An Error has Occured! Min 15 Characters'}
                 <Label>
                     Password
                 </Label>
-                <Input type = 'password' name = 'password' ref={register({max: 50, min: 15, maxLength: 50})}
+                <Input type = 'password' name = 'password' ref={register({required: true, max: 50, min: 15, maxLength: 50})}
                 />
-                {errors.password && errors.password.message}
+                {errors.password && 'An Error has Occured! Min 15 Characters'}
                 <Button type = 'submit' name = 'submit' value = 'Log In' />
             </Form>
         </Wrapper>
