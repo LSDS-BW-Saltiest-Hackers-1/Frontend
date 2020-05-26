@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import { Route, Switch, Link } from "react-router-dom";
+import React, { useState, useEffect } from "./node_modules/react";
+import axios from "./node_modules/axios";
+import styled from "./node_modules/styled-components";
+import { Route, Switch, Link } from "./node_modules/react-router-dom";
+import * as yup from "yup";
 import RegistrationForm from "./RegistrationForm/RegistrationForm";
+import RegFormSchema from "./RegistrationForm/RegFormSchema";
 
 const initialFormValues = {
   name: "",
+  username: "",
   email: "",
   password: "",
 };
 
 const initialFormErrors = {
   name: "",
+  username: "",
   email: "",
   password: "",
 };
@@ -49,6 +53,22 @@ function Register() {
     const { name } = event.target;
     const { value } = event.target;
 
+    // yup
+    //   .reach(RegFormSchema, name)
+    //   .validate(value)
+    //   .then((valid) => {
+    //     setFormErrors({
+    //       ...formErrors,
+    //       [name]: "",
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     setFormErrors({
+    //       ...formErrors,
+    //       [name]: error.errors[0],
+    //     });
+    //   });
+
     setFormValues({ ...formValues, [name]: value });
   };
 
@@ -74,4 +94,4 @@ function Register() {
   );
 }
 
-export default App;
+export default Register;
