@@ -4,9 +4,8 @@ import React from 'react';
 
 function UserHome() {
   return (
-    <div class='user-home-page'>
-      <h2>User Home Page</h2>
-      
+    <div className='user-home-page'>
+      <h2>User Home Page (user is logged in)</h2>
     </div>
   );
 }
