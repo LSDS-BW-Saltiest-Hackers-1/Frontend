@@ -7,16 +7,18 @@ const Wrapper = styled.div`
     max-width: 100%;
     justify-content: center;
     align-items: center;
+    background: #ffffff;
+    height: 100vh;
 `
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    border: 8px solid blue;
+    /* border: 8px solid #0000ff; */
     width: 50%;
-    border-radius: 10px;
-    margin-top: 8%;
+    border-radius: 4px;
+    margin-top: 1%;
     padding-bottom: 3%;
     height: 55vh;
 `
@@ -31,16 +33,15 @@ const Input = styled.input`
     border-radius: 4px;
     font-size: x-large;
 `
-const Header = styled.h1`
-    font-size: xx-large;
-`
 const Button = styled.input`
     border: 2px blue solid;
-    width: 20%;
+    width: 60%;
     cursor: pointer;
     font-size: x-large;
     border-radius: 4px;
-    margin-top: 2.5%;
+    margin-top: 5%;
+    color: #ffffff;
+    background: #8080ff;
 `
 function LoginForm(){
     const {register, handleSubmit, errors} = useForm()
@@ -50,11 +51,8 @@ function LoginForm(){
     return (
         <Wrapper>
             <Form onSubmit={handleSubmit(onSubmit)}>
-                <Header>
-                    Login
-                </Header>
                 <Label>
-                    Username:
+                    Username
                 </Label>
                 <Input type = 'text' name = 'username' ref={register({
                      validate: value => value !== "admin" || "Nice try!"
@@ -62,12 +60,12 @@ function LoginForm(){
                 />
                 {errors.username && errors.username.message}
                 <Label>
-                    Password:
+                    Password
                 </Label>
                 <Input type = 'password' name = 'password' ref={register({max: 50, min: 15, maxLength: 50})}
                 />
-                {errors.username && errors.username.message}
-                <Button type = 'submit' name = 'submit' value = 'Submit' />
+                {errors.password && errors.password.message}
+                <Button type = 'submit' name = 'submit' value = 'Log In' />
             </Form>
         </Wrapper>
     )
