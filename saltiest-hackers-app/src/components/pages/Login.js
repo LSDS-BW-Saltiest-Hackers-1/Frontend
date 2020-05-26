@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useForm } from "react-hook-form";
 
 const Wrapper = styled.div`
     display: flex;
@@ -12,7 +13,7 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: 5px solid blue;
+    border: 8px solid blue;
     width: 50%;
     border-radius: 10px;
     margin-top: 8%;
@@ -21,10 +22,8 @@ const Form = styled.form`
 `
 const Label = styled.label`
     display: flex;
-    flex-direction: column;
     font-size: x-large;
-    width: 90%;
-    align-items: center;
+    width: 60%;
 `
 const Input = styled.input`
     width: 60%;
@@ -41,22 +40,33 @@ const Button = styled.input`
     cursor: pointer;
     font-size: x-large;
     border-radius: 4px;
+    margin-top: 2.5%;
 `
 function LoginForm(){
+    const {register, handleSubmit, errors} = useForm()
+    const onSubmit = values => console.log(values);
+
+
     return (
         <Wrapper>
-            <Form>
+            <Form onSubmit={handleSubmit(onSubmit)}>
                 <Header>
                     Login
                 </Header>
                 <Label>
                     Username:
-                    <Input type = 'text' name = 'username' />
                 </Label>
+                <Input type = 'text' name = 'username' ref={register({
+                     validate: value => value !== "admin" || "Nice try!"
+                    })}
+                />
+                {errors.username && errors.username.message}
                 <Label>
                     Password:
-                    <Input type = 'email' name = 'email' />
                 </Label>
+                <Input type = 'password' name = 'password' ref={register({max: 50, min: 15, maxLength: 50})}
+                />
+                {errors.username && errors.username.message}
                 <Button type = 'submit' name = 'submit' value = 'Submit' />
             </Form>
         </Wrapper>
