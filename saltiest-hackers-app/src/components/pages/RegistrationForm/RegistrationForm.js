@@ -81,7 +81,7 @@ const RegistrationForm = (props) => {
       </div>
       <div className="submit-button">
         <p></p>
-        <button disabled={disabled} className="submit">
+        <button onClick={onSubmit} disabled={disabled} className="submit">
           Submit
         </button>
       </div>
