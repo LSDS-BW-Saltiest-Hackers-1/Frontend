@@ -49,7 +49,7 @@ const Button = styled.input`
 const Error = styled.p`
     color: red;
 `
-function LoginForm({ loginUser, token, isLoading, loginError }){
+function LoginForm({ token, isLoading, loginError, loginUser }){
     const {register, handleSubmit, errors} = useForm();
     const history = useHistory();
     const onSubmit = values => {
@@ -66,6 +66,7 @@ function LoginForm({ loginUser, token, isLoading, loginError }){
         <Wrapper>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 {isLoading && <h2>Logging In...</h2>}
+                {loginError && <h2>{loginError}</h2>}
                 <Label>
                     Username
                 </Label>

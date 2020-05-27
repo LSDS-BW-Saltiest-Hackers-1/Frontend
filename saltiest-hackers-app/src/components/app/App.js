@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
@@ -10,8 +11,8 @@ import Login from '../pages/Login.js';
 
 import PrivateRoute from '../PrivateRoute/PrivateRoute.js';
 
-function App() {
-  const token = localStorage.getItem('token');
+function App({ token }) {
+  // const token = localStorage.getItem('token');
 
   // useEffect(() => {
   //   axios.put('https://saltiest-hacker-bw.herokuapp.com/api/users/5', {
@@ -42,11 +43,17 @@ function App() {
     <div className='App'>
       <NavBar />
       <Switch>
-        {(token ? <PrivateRoute exact path='/' component={UserHome}/> : <Route exact path='/' component={Home}/>)}
+        {token ? <PrivateRoute exact path='/' component={UserHome}/> : <Route exact path='/' component={Home}/>}
         <Route path='/login' component={Login}/>
       </Switch>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    token: state.userReducer.token
+  };
+};
+
+export default connect(mapStateToProps, {})(App);

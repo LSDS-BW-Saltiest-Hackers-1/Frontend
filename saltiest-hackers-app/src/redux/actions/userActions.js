@@ -29,12 +29,20 @@ export const loginUser = (username, password) => {
     axiosWithAuth()
       .post('https://saltiest-hacker-bw.herokuapp.com/api/users/login', { username: username, password: password })
       .then(res => {
+        localStorage.setItem('token', res.data.token);
         dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data });
       })
       .catch(err => {
         console.log(err.response);
         dispatch({ type: LOGIN_USER_FAILURE, payload: err.response.data.message });
       });
+  };
+};
+
+export const LOGOUT_USER = 'LOGOUT_USER';
+export const logoutUser = () => {
+  return dispatch => {
+    dispatch({ type: LOGOUT_USER });
   };
 };
 
