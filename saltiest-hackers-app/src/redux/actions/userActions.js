@@ -27,7 +27,7 @@ export const loginUser = (username, password) => {
   return dispatch => {
     dispatch({ type: LOGIN_USER_START });
     axiosWithAuth()
-      .post('https://saltiest-hacker-bw.herokuapp.com/api/users/login', { username: username, password: password })
+      .post('/api/users/login', { username: username, password: password })
       .then(res => {
         localStorage.setItem('token', res.data.token);
         dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data });
@@ -54,7 +54,7 @@ export const registerUser = newUser => {
   return dispatch => {
     dispatch({ type: REGISTER_USER_START });
     axiosWithAuth()
-      .post('https://saltiest-hacker-bw.herokuapp.com/api/users/register', newUser)
+      .post('/api/users/register', newUser)
       .then(res => {
         // res.data[0] - {first_name, last_name, username, id}
         dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data[0] });
