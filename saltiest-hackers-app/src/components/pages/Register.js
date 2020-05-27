@@ -31,7 +31,10 @@ function Registration() {
 
   const registerUser = (newUser) => {
     axios
-      .post("https://reqres.in/api/orders", newUser)
+      .post(
+        "https://saltiest-hacker-bw.herokuapp.com/api/users/register",
+        newUser
+      )
       .then((res) => {
         setUsers([res.data, ...users]);
       })
