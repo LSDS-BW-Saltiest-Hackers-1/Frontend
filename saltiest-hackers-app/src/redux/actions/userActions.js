@@ -42,6 +42,7 @@ export const loginUser = (username, password) => {
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const logoutUser = () => {
   return dispatch => {
+    localStorage.removeItem('token');
     dispatch({ type: LOGOUT_USER });
   };
 };

@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../../redux/actions/userActions.js';
 
 function NavBar({ token, logoutUser }) {
   return (
@@ -7,13 +9,15 @@ function NavBar({ token, logoutUser }) {
       <Link to='/'>Home</Link>
       <Link to='/about'>About</Link>
       <Link to='/search'>Search</Link>
-      {/* {token ?  : } */}
+      {token ? <Link to='/' onClick={logoutUser}>Logout</Link> : <Link to='/login'>Login</Link>}
     </nav>
   );
 }
 
 const mapStateToProps = state => {
-  token: state.userReducer.token
+  return {
+    token: state.userReducer.token
+  };
 };
 
 export default connect(mapStateToProps, { logoutUser })(NavBar);
