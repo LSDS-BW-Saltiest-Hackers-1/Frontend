@@ -9,7 +9,7 @@ import NavBar from '../NavBar/NavBar.js';
 import UserHome from '../pages/UserHome/UserHome.js';
 import Login from '../pages/Login.js';
 
-import PrivateRoute from '../PrivateRoute/PrivateRoute.js';
+import PrivateRoute from "../PrivateRoute/PrivateRoute.js";
 
 function App({ token }) {
   // const token = localStorage.getItem('token');
@@ -40,7 +40,7 @@ function App({ token }) {
   }, []);
 
   return (
-    <div className='App'>
+    <div className="App">
       <NavBar />
       <Switch>
         {token ? <PrivateRoute exact path='/' component={UserHome}/> : <Route exact path='/' component={Home}/>}
