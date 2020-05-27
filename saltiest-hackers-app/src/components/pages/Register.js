@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "./node_modules/react";
-import axios from "./node_modules/axios";
-import styled from "./node_modules/styled-components";
-import { Route, Switch, Link } from "./node_modules/react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import { Route, Switch, Link } from "react-router-dom";
 import * as yup from "yup";
 import RegistrationForm from "./RegistrationForm/RegistrationForm";
 import RegFormSchema from "./RegistrationForm/RegFormSchema";
@@ -21,13 +21,13 @@ const initialFormErrors = {
 };
 
 const initialUsers = [];
-const initialDiabled = true;
+const initialDisabled = true;
 
-function Register() {
+function Registration() {
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const [disabled, setDisabled] = useState(initialDiabled);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const registerUser = (newUser) => {
     axios
@@ -53,45 +53,57 @@ function Register() {
     const { name } = event.target;
     const { value } = event.target;
 
-    // yup
-    //   .reach(RegFormSchema, name)
-    //   .validate(value)
-    //   .then((valid) => {
-    //     setFormErrors({
-    //       ...formErrors,
-    //       [name]: "",
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     setFormErrors({
-    //       ...formErrors,
-    //       [name]: error.errors[0],
-    //     });
-    //   });
+    yup
+      .reach(RegFormSchema, name)
+      .validate(value)
+      .then((valid) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      .catch((error) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: error.errors[0],
+        });
+      });
 
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const onCheckboxChange = (event) => {
-    const { name } = event.target;
-    const { checked } = event.target;
-    setFormValues({
-      ...formValues,
-      [name]: checked,
-    });
-  };
+  // const onCheckboxChange = (event) => {
+  //   const { name } = event.target;
+  //   const { checked } = event.target;
+  //   setFormValues({
+  //     ...formValues,
+  //     [name]: checked,
+  //   });
+  // };
 
   const onSubmit = (event) => {
-    event.preventdefault();
+    event.preventDefault();
     const newUser = { ...formValues };
     registerUser(newUser);
   };
 
+  useEffect(() => {
+    RegFormSchema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
+
   return (
     <div className="App">
-      <RegistrationForm />
+      <RegistrationForm
+        errors={formErrors}
+        values={formValues}
+        onInputChange={onInputChange}
+        onSubmit={onSubmit}
+        disabled={disabled}
+      />
     </div>
   );
 }
 
-export default Register;
+export default Registration;
