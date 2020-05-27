@@ -105,7 +105,7 @@ function Registration({ newUser, registrationError, registerUser }) {
   useEffect(() => {
     if (Object.keys(newUser).length !== 0) {
       alert(`Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} and your registration has been received!`);
-      console.log(`Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} registration has been received!`);
+      console.log(`Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} and your registration has been received!`);
       history.push('/login');
     }
   });
