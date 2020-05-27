@@ -7,15 +7,15 @@ const FormDiv = styled.div`
   .email,
   .password {
     width: 40%;
-    padding: 1% 0 3% 0;
+    padding: 0% 0 1% 0;
     margin: 1% auto 1% auto;
-    background-color: lightgray;
-    border-radius: 20px;
+    background-color: #2ac4ef;
+    border-radius: 5px;
   }
 
   .submit {
     width: 40%;
-    background-color: lightblue;
+    background-color: #2ac4ef;
     border-radius: 5px;
     padding: 0.5%;
   }

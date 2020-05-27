@@ -7,16 +7,16 @@ import RegistrationForm from "./RegistrationForm/RegistrationForm";
 import RegFormSchema from "./RegistrationForm/RegFormSchema";
 
 const initialFormValues = {
-  name: "",
+  first_name: "",
+  last_name: "",
   username: "",
-  email: "",
   password: "",
 };
 
 const initialFormErrors = {
-  name: "",
+  first_name: "",
+  last_name: "",
   username: "",
-  email: "",
   password: "",
 };
 
@@ -40,10 +40,10 @@ function Registration() {
       })
       .finally(() => {
         alert(
-          `Thank you ${newUser.name}. Your registration has been received!`
+          `Thank you ${newUser.first_name}. Your registration has been received!`
         );
         console.log(
-          `Thank you ${newUser.name}. Your registration has been received!`
+          `Thank you ${newUser.first_name}. Your registration has been received!`
         );
         setFormValues(initialFormValues);
       });
