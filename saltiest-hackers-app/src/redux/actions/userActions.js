@@ -1,39 +1,58 @@
+// import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 
 export const FETCH_USER_START = 'FETCH_USER_START';
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
-export const fetchUser = () => {
+// export const fetchUser = () => {
+//   return dispatch => {
+//     dispatch({ type: FETCH_USER_START });
+//     axiosWithAuth()
+//       .get('https://saltiest-hacker-bw.herokuapp.com/')
+//       .then(res => {
+//         console.log(res);
+//         // dispatch({ type: FETCH_USER_SUCCESS });
+//       })
+//       .catch(err => {
+//         console.log(err);
+//         // dispatch({ type: FETCH_USER_FAILURE });
+//       });
+//   };
+// };
+
+export const LOGIN_USER_START = 'LOGIN_USER_START';
+export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
+export const loginUser = (username, password) => {
   return dispatch => {
-    dispatch({ type: FETCH_USER_START });
+    dispatch({ type: LOGIN_USER_START });
     axiosWithAuth()
-      .get('')
+      .post('https://saltiest-hacker-bw.herokuapp.com/api/users/login', { username: username, password: password })
       .then(res => {
-        console.log(res);
-        // dispatch({ type: FETCH_USER_SUCCESS });
+        dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data });
       })
       .catch(err => {
-        console.log(err);
-        // dispatch({ type: FETCH_USER_FAILURE });
+        console.log(err.response);
+        dispatch({ type: LOGIN_USER_FAILURE, payload: err.response.data.message });
       });
   };
 };
 
-export const POST_USER_START = 'POST_USER_START';
-export const POST_USER_SUCCESS = 'POST_USER_SUCCESS';
-export const POST_USER_FAILURE = 'POST_USER_FAILURE';
-export const postUser = () => {
+export const REGISTER_USER_START = 'REGISTER_USER_START';
+export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
+export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE';
+export const registerUser = () => {
   return dispatch => {
-    dispatch({ type: POST_USER_START });
+    dispatch({ type: REGISTER_USER_START });
     axiosWithAuth()
-      .post('')
+      .post('https://saltiest-hacker-bw.herokuapp.com/api/users/register')
       .then(res => {
         console.log(res);
-        // dispatch({ type: POST_USER_SUCCESS });
+        // dispatch({ type: REGISTER_USER_SUCCESS });
       })
       .catch(err => {
         console.log(err);
-        // dispatch({ type: POST_USER_FAILURE });
+        // dispatch({ type: REGISTER_USER_FAILURE });
       });
   };
 };

@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
+import { loginUser } from '../../redux/actions/userActions.js';
 
 const Wrapper = styled.div`
     display: flex;
@@ -43,14 +46,23 @@ const Button = styled.input`
     color: #ffffff;
     background: #8080ff;
 `
-function LoginForm(){
-    const {register, handleSubmit, errors} = useForm()
-    const onSubmit = values => console.log(values);
+function LoginForm({ loginUser, token, isLoading, loginError }){
+    const {register, handleSubmit, errors} = useForm();
+    const history = useHistory();
+    const onSubmit = values => {
+        loginUser(values.username, values.password);
+        // if (!isLoading) {
+        //   if (token) {
+        //     history.push('/');
+        //   }
+        // }
+    };
 
 
     return (
         <Wrapper>
             <Form onSubmit={handleSubmit(onSubmit)}>
+                {isLoading && <h2>Logging In...</h2>}
                 <Label>
                     Username
                 </Label>
@@ -70,4 +82,13 @@ function LoginForm(){
         </Wrapper>
     )
 }
-export default LoginForm;
+
+const mapStateToProps = state => {
+  return {
+    token: state.userReducer.token,
+    isLoading: state.userReducer.isLoading,
+    loginError: state.userReducer.error
+  };
+};
+
+export default connect(mapStateToProps, { loginUser })(LoginForm);
