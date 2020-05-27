@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
+import LoginForm from '../pages/Login';
 import './App.css';
 import Home from '../pages/HomePage/Home.js';
 import NavBar from '../NavBar/NavBar.js';
@@ -15,6 +15,9 @@ function App() {
     <div className='App'>
       <NavBar />
       <Switch>
+        <Route path = '/login'> 
+          <LoginForm />
+        </Route>
         {(token ? <PrivateRoute exact path='/' component={UserHome}/> : <Route exact path='/' component={Home}/>)}
       </Switch>
     </div>
