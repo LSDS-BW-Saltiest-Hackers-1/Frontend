@@ -67,3 +67,10 @@ export const registerUser = newUser => {
       });
   };
 };
+
+export const CLEAR_NEW_USER_DATA = 'CLEAR_NEW_USER_DATA';
+export const clearNewUserData = () => {
+  return dispatch => {
+    dispatch({ type: CLEAR_NEW_USER_DATA })
+  };
+};

@@ -16,7 +16,7 @@ function App({ token }) {
   // const token = localStorage.getItem('token');
 
   // useEffect(() => {
-  //   axios.delete('https://saltiest-hacker-bw.herokuapp.com/api/users/12')
+  //   axios.delete('https://saltiest-hacker-bw.herokuapp.com/api/users/19')
   //     .then(res => {
   //       console.log(res);
   //     })

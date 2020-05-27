@@ -8,7 +8,8 @@ import {
   LOGOUT_USER,
   REGISTER_USER_START,
   REGISTER_USER_SUCCESS,
-  REGISTER_USER_FAILURE
+  REGISTER_USER_FAILURE,
+  CLEAR_NEW_USER_DATA
 } from '../actions/userActions.js';
 
 export const initState = {
@@ -74,6 +75,11 @@ export const userReducer = (state = initState, action) => {
         ...state,
         isLoading: false,
         error: (action.payload.errorMessage.code === '23505' ? 'username already in use' : action.payload.message)
+      };
+    case CLEAR_NEW_USER_DATA:
+      return {
+        ...state,
+        newUser: {}
       };
 
     default:
