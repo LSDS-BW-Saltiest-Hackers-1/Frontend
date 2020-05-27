@@ -9,6 +9,7 @@ function NavBar({ token, logoutUser }) {
       <Link to='/'>Home</Link>
       <Link to='/about'>About</Link>
       <Link to='/search'>Search</Link>
+      {!token && <Link to='/register'>Register</Link>}
       {token ? <Link to='/' onClick={logoutUser}>Logout</Link> : <Link to='/login'>Login</Link>}
     </nav>
   );

@@ -8,6 +8,7 @@ import Home from '../pages/HomePage/Home.js';
 import NavBar from '../NavBar/NavBar.js';
 import UserHome from '../pages/UserHome/UserHome.js';
 import Login from '../pages/Login.js';
+import Registration from '../pages/Register.js';
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute.js";
 
@@ -15,12 +16,7 @@ function App({ token }) {
   // const token = localStorage.getItem('token');
 
   // useEffect(() => {
-  //   axios.put('https://saltiest-hacker-bw.herokuapp.com/api/users/5', {
-  //     first_name: 'jim',
-  //     last_name: 'jimmy',
-  //     username: 'jimmy123',
-  //     password: 'password'
-  //   })
+  //   axios.delete('https://saltiest-hacker-bw.herokuapp.com/api/users/12')
   //     .then(res => {
   //       console.log(res);
   //     })
@@ -45,6 +41,7 @@ function App({ token }) {
       <Switch>
         {token ? <PrivateRoute exact path='/' component={UserHome}/> : <Route exact path='/' component={Home}/>}
         <Route path='/login' component={Login}/>
+        <Route path='/register' component={Registration}/>
       </Switch>
     </div>
   );

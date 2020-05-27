@@ -50,18 +50,20 @@ export const logoutUser = () => {
 export const REGISTER_USER_START = 'REGISTER_USER_START';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE';
-export const registerUser = () => {
+export const registerUser = newUser => {
   return dispatch => {
     dispatch({ type: REGISTER_USER_START });
     axiosWithAuth()
-      .post('https://saltiest-hacker-bw.herokuapp.com/api/users/register')
+      .post('https://saltiest-hacker-bw.herokuapp.com/api/users/register', newUser)
       .then(res => {
-        console.log(res);
-        // dispatch({ type: REGISTER_USER_SUCCESS });
+        // res.data[0] - {first_name, last_name, username, id}
+        dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data[0] });
       })
       .catch(err => {
-        console.log(err);
-        // dispatch({ type: REGISTER_USER_FAILURE });
+        // err.response.data.errorMessage.detail - "already exists"
+        // err.response.data.errorMessage.code - 23505
+        // err.response.data.message - "missing field"
+        dispatch({ type: REGISTER_USER_FAILURE, payload: err.response.data });
       });
   };
 };

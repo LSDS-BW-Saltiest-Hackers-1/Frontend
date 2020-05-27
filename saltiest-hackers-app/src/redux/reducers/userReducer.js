@@ -14,7 +14,8 @@ import {
 export const initState = {
   token: localStorage.getItem('token'),
   isLoading: false,
-  error: ''
+  error: '',
+  newUser: {}
 };
 
 export const userReducer = (state = initState, action) => {
@@ -57,15 +58,22 @@ export const userReducer = (state = initState, action) => {
       };
     case REGISTER_USER_START:
       return {
-        ...state
+        ...state,
+        isLoading: true,
+        error: ''
       };
     case REGISTER_USER_SUCCESS:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        error: '',
+        newUser: action.payload
       };
     case REGISTER_USER_FAILURE:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        error: (action.payload.errorMessage.code === '23505' ? 'username already in use' : action.payload.message)
       };
 
     default:
