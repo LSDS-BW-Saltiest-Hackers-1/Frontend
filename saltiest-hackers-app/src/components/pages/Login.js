@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -54,13 +54,13 @@ function LoginForm({ loginUser, token, isLoading, loginError }){
     const history = useHistory();
     const onSubmit = values => {
         loginUser(values.username, values.password);
-        // if (!isLoading) {
-        //   if (token) {
-        //     history.push('/');
-        //   }
-        // }
     };
 
+    useEffect(() => {
+        if (token) {
+            history.push('/');
+        }
+    });
 
     return (
         <Wrapper>
