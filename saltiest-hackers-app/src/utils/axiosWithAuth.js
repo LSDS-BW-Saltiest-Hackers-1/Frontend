@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const axiosWithAuth = () => {
-  const token = localStorage.getItem('token');
+export const axiosWithAuth = token => {
+  // const token = localStorage.getItem('token');
   return axios.create({
     headers: {
       Authorization: token
     },
-    baseURL: 'https://saltiest-hacker-bw.herokuapp.com'
+    baseURL: 'http://saltyapp.herokuapp.com'
   });
 };

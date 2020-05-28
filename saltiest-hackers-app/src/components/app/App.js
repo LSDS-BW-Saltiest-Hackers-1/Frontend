@@ -38,6 +38,17 @@ function App({ token }) {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("https://saltyapp.herokuapp.com/top20_saltiest_users")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="App">
       <NavBar />
