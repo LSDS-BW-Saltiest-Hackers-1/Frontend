@@ -12,7 +12,6 @@ import Registration from "../pages/Register";
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute.js";
 import GlobalStyle from "../../styles/Global";
-import Cards from "../pages/Cards";
 
 function App({ token }) {
   // const token = localStorage.getItem('token');
@@ -42,7 +41,6 @@ function App({ token }) {
     <div className="App">
       <NavBar />
       <GlobalStyle />
-      {/* <Cards /> */}
       <Switch>
         {token ? (
           <PrivateRoute exact path="/" component={UserHome} />
