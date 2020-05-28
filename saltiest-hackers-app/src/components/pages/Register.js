@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 // import axios from "axios";
 // import styled from "styled-components";
 // import { Route, Switch, Link } from "react-router-dom";
@@ -125,11 +125,11 @@ function Registration({ newUser, registrationError, registerUser, clearNewUserDa
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isLoading: state.userReducer.isLoading,
     registrationError: state.userReducer.error,
-    newUser: state.userReducer.newUser
+    newUser: state.userReducer.newUser,
   };
 };
 
