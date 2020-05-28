@@ -1,17 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import Home from "../Pages/HomePage/Home.js";
-import NavBar from "../NavBar/NavBar";
-import UserHome from "../Pages/UserHome/UserHome.js";
-import PrivateRoute from "../PrivateRoute/PrivateRoute.js";
+import axios from "axios";
+
 import "./App.css";
+import Home from "../Pages/HomePage/Home";
+import NavBar from "../NavBar/NavBar.js";
+import UserHome from "../Pages/UserHome/UserHome";
+import Login from "../Pages/Login";
+import Registration from "../Pages/Register";
+
+import PrivateRoute from "../PrivateRoute/PrivateRoute.js";
 import GlobalStyle from "../../styles/Global";
 import Cards from "../Pages/Cards";
-import TestLogin from "../Pages/TestLogin";
-import RegistrationForm from "../Pages/RegistrationForm/RegistrationForm";
 
-function App() {
-  const token = localStorage.getItem("token");
+function App({ token }) {
+  // const token = localStorage.getItem('token');
+
+  // useEffect(() => {
+  //   axios.delete('https://saltiest-hacker-bw.herokuapp.com/api/users/12')
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://saltiest-hacker-bw.herokuapp.com/api/users")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className="App">
@@ -24,10 +49,17 @@ function App() {
         ) : (
           <Route exact path="/" component={Home} />
         )}
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Registration} />
       </Switch>
-      <RegistrationForm />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    token: state.userReducer.token,
+  };
+};
+
+export default connect(mapStateToProps, {})(App);

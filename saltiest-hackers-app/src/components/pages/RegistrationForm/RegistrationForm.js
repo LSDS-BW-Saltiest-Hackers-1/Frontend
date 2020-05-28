@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import {
   CardWrapper,
   CardHeader,
@@ -10,11 +11,19 @@ import {
   CardLink,
 } from "../FormStyles";
 
+const Wrapper = styled.div`
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
 const RegistrationForm = (props) => {
   const { values, onInputChange, onSubmit, disabled, errors } = props;
 
   return (
-    <div className="TestLogin">
+    <Wrapper>
       <CardWrapper onSubmit={onSubmit}>
         <CardHeader>
           <CardHeading>Sign Up</CardHeading>
@@ -66,7 +75,7 @@ const RegistrationForm = (props) => {
           </CardFieldset>
         </CardBody>
       </CardWrapper>
-    </div>
+    </Wrapper>
   );
 };
 

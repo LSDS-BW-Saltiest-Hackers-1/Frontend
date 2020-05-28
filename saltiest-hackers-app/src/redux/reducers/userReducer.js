@@ -2,13 +2,20 @@ import {
   FETCH_USER_START,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
-  POST_USER_START,
-  POST_USER_SUCCESS,
-  POST_USER_FAILURE
+  LOGIN_USER_START,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAILURE,
+  LOGOUT_USER,
+  REGISTER_USER_START,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAILURE
 } from '../actions/userActions.js';
 
 export const initState = {
-  placeHolder: ''
+  token: localStorage.getItem('token'),
+  isLoading: false,
+  error: '',
+  newUser: {}
 };
 
 export const userReducer = (state = initState, action) => {
@@ -25,17 +32,48 @@ export const userReducer = (state = initState, action) => {
       return {
         ...state
       };
-    case POST_USER_START:
+    case LOGIN_USER_START:
       return {
-        ...state
+        ...state,
+        isLoading: true,
+        error: ''
       };
-    case POST_USER_SUCCESS:
+    case LOGIN_USER_SUCCESS:
       return {
-        ...state
+        ...state,
+        token: action.payload.token,
+        isLoading: false,
+        error: ''
       };
-    case POST_USER_FAILURE:
+    case LOGIN_USER_FAILURE:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        token: ''
+      };
+    case REGISTER_USER_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ''
+      };
+    case REGISTER_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: '',
+        newUser: action.payload
+      };
+    case REGISTER_USER_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: (action.payload.errorMessage.code === '23505' ? 'username already in use' : action.payload.message)
       };
 
     default:
