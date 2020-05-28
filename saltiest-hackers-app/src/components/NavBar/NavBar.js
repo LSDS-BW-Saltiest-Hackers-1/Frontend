@@ -97,15 +97,15 @@ const Navbar = ({ token, logoutUser }) => {
             <BurgerMenu />
           </BurgerWrapper>
         </FlexContainer>
+        <CollapseMenu />
       </NavBar>
-      <CollapseMenu />
     </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    token: state.userReducer.token
+    token: state.userReducer.token,
   };
 };
 

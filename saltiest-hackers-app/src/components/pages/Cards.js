@@ -8,8 +8,8 @@ import Button from "@material-ui/core/Button";
 import TextInfoContent from "@mui-treasury/components/content/textInfo";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
 import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
-
 import styled from "@emotion/styled/macro";
+import logo from "../assets/logo2.png";
 
 const CommentsContainer = styled.div`
   display: flex;
@@ -23,36 +23,6 @@ const CommentsContainer = styled.div`
 const CommentWrapper = styled.div`
   margin: 2%;
 `;
-
-// import logo from "../assets/logo2.png";
-
-// import React from "react";
-// import styled from "styled-components"
-
-// const Container = styled.div`
-//   width: 50%;
-//   margin: auto;
-//   outline: 5px solid black;
-// `;
-
-// const Cards = () => {
-//   return (
-//     <div>
-//       {array.map((user) => {
-//         return (
-//           <Container>
-//             <p className="username">{user.username}</p>
-//             <p className="date">{user.date}</p>
-//             <p className="comment">{user.comment}</p>
-//             <p className="rating">Rating: {user.rating}</p>
-//           </Container>
-//         );
-//       })}
-//     </div>
-//   );
-// };
-
-// export default Cards;
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
@@ -97,7 +67,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
       left: 0,
       width: "100%",
       height: "100%",
-      backgroundImage: "linear-gradient(147deg, #fe8a39 0%, #fd3838 74%)",
+      backgroundImage: "linear-gradient(147deg, #F5F5EC 0%, #FF5E00 74%)",
       borderRadius: spacing(2), // 16
       opacity: 0.5,
     },
@@ -127,9 +97,10 @@ const CommentCard = ({ data }) => {
             <Card className={cx(styles.root, shadowStyles.root)}>
               <CardMedia
                 className={styles.media}
-                image={
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
-                }
+                image={logo}
+                // image={
+                //   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
+                // }
               />
               <CardContent>
                 <TextInfoContent
