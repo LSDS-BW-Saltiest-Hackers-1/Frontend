@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const CardWrapper = styled.form`
+  background-color: white;
   overflow: hidden;
   padding: 0 0 32px;
   margin: 48px auto 0;

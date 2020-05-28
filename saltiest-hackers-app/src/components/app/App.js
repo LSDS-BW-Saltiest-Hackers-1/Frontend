@@ -41,7 +41,7 @@ function App({ token }) {
   return (
     <div className="App">
       <NavBar />
-      {/* <GlobalStyle /> */}
+      <GlobalStyle />
       {/* <Cards /> */}
       <Switch>
         {token ? (
