@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 // import axios from "axios";
 // import styled from "styled-components";
 // import { Route, Switch, Link } from "react-router-dom";
 import * as yup from "yup";
-import { registerUser } from '../../redux/actions/userActions.js';
+import { registerUser } from "../../redux/actions/userActions.js";
 
 import RegistrationForm from "./RegistrationForm/RegistrationForm";
 import RegFormSchema from "./RegistrationForm/RegFormSchema";
@@ -104,9 +104,13 @@ function Registration({ newUser, registrationError, registerUser }) {
 
   useEffect(() => {
     if (Object.keys(newUser).length !== 0) {
-      alert(`Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} and your registration has been received!`);
-      console.log(`Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} registration has been received!`);
-      history.push('/login');
+      alert(
+        `Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} and your registration has been received!`
+      );
+      console.log(
+        `Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} registration has been received!`
+      );
+      history.push("/login");
     }
   });
 
@@ -124,11 +128,11 @@ function Registration({ newUser, registrationError, registerUser }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isLoading: state.userReducer.isLoading,
     registrationError: state.userReducer.error,
-    newUser: state.userReducer.newUser
+    newUser: state.userReducer.newUser,
   };
 };
 
