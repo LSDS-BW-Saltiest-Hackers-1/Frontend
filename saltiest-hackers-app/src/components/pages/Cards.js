@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import cx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -111,7 +112,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   },
 }));
 
-const CommentCard = ({ data }) => {
+const CommentCard = ({ commentData }) => {
   const styles = useStyles();
   const {
     button: buttonStyles,
@@ -120,7 +121,9 @@ const CommentCard = ({ data }) => {
   const shadowStyles = useOverShadowStyles();
   return (
     <CommentsContainer>
-      {data.map((item) => {
+      {commentData
+        .filter((item, i) => i < 20)
+        .map((item) => {
         // console.log("CommentCard -> item", item);
         return (
           <CommentWrapper>
@@ -148,4 +151,11 @@ const CommentCard = ({ data }) => {
   );
 };
 
-export default CommentCard;
+const mapStateToProps = state => {
+  // return {
+  //   commentData: state.commentReducer.commentData
+  // };
+  return state;
+};
+
+export default connect(mapStateToProps, {})(CommentCard);

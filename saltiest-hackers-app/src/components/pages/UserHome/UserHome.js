@@ -13,7 +13,7 @@ function UserHome({ token, commentData, fetchComments }) {
   return (
     <div className="user-home-page">
       <h2>User Home Page (user is logged in)</h2>
-      {/* <CommentCard /> */}
+      <CommentCard commentData={commentData}/>
     </div>
   );
 }
