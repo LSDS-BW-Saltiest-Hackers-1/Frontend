@@ -1,4 +1,15 @@
+import axios from 'axios';
 import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
+
+const apiURL = 'https://saltiest-hacker-bw.herokuapp.com';
+
+// http://saltyapp.herokuapp.com
+// https://saltyapp.herokuapp.com/home
+// https://saltyapp.herokuapp.com/top20_saltiest_users
+// https://saltyapp.herokuapp.com/top20_sweetest_users
+// https://saltyapp.herokuapp.com/top10_commenters
+// https://saltyapp.herokuapp.com/top100_salty_comments
+// https://saltyapp.herokuapp.com/top100_sweetest_comments
 
 export const FETCH_COMMENTS_START = 'FETCH_COMMENTS_START';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
@@ -7,14 +18,14 @@ export const fetchComments = () => {
   return dispatch => {
     dispatch({ type: FETCH_COMMENTS_START });
     axiosWithAuth()
-      .get('')
+      .get('/home')
       .then(res => {
         console.log(res);
-        // dispatch({ type: FETCH_COMMENTS_SUCCESS });
+        dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
       })
       .catch(err => {
         console.log(err);
-        // dispatch({ type: FETCH_COMMENTS_FAILURE });
+        dispatch({ type: FETCH_COMMENTS_FAILURE, payload: err });
       });
   };
 };
