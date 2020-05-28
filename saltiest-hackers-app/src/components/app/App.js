@@ -4,21 +4,21 @@ import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
-import Home from "../Pages/HomePage/Home";
+import Home from "../pages/HomePage/Home";
 import NavBar from "../NavBar/NavBar.js";
-import UserHome from "../Pages/UserHome/UserHome";
-import Login from "../Pages/Login";
-import Registration from "../Pages/Register";
+import UserHome from "../pages/UserHome/UserHome";
+import Login from "../pages/Login";
+import Registration from "../pages/Register";
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute.js";
 import GlobalStyle from "../../styles/Global";
-import Cards from "../Pages/Cards";
+import Cards from "../pages/Cards";
 
 function App({ token }) {
   // const token = localStorage.getItem('token');
 
   // useEffect(() => {
-  //   axios.delete('https://saltiest-hacker-bw.herokuapp.com/api/users/12')
+  //   axios.delete('https://saltiest-hacker-bw.herokuapp.com/api/users/19')
   //     .then(res => {
   //       console.log(res);
   //     })

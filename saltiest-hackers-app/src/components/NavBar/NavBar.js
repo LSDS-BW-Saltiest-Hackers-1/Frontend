@@ -62,7 +62,7 @@ const BurgerWrapper = styled.div`
   }
 `;
 
-const Navbar = (props, { token, logoutUser }) => {
+const Navbar = ({ token, logoutUser }) => {
   const barAnimation = useSpring({
     from: { transform: "translate3d(0, -10rem, 0)" },
     transform: "translate3d(0, 0, 0)",
@@ -94,24 +94,18 @@ const Navbar = (props, { token, logoutUser }) => {
             )}
           </NavLinks>
           <BurgerWrapper>
-            <BurgerMenu
-              navbarState={props.navbarState}
-              handleNavbar={props.handleNavbar}
-            />
+            <BurgerMenu />
           </BurgerWrapper>
         </FlexContainer>
       </NavBar>
-      <CollapseMenu
-        navbarState={props.navbarState}
-        handleNavbar={props.handleNavbar}
-      />
+      <CollapseMenu />
     </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    token: state.userReducer.token,
+    token: state.userReducer.token
   };
 };
 
