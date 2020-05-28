@@ -76,7 +76,7 @@ function LoginForm({ token, isLoading, loginError, loginUser }) {
         {isLoading && <h2>Logging In...</h2>}
         {loginError && <h2>{loginError}</h2>}
         <CardHeader>
-          <CardHeading>Sign in</CardHeading>
+          <CardHeading>Sign In</CardHeading>
         </CardHeader>
         <CardBody>
           <CardFieldset>
