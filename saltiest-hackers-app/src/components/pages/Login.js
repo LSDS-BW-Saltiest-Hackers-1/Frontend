@@ -46,8 +46,8 @@ const Button = styled.input`
 const Error = styled.p`
     color: red;
 `
-function LoginForm(){
-    const {register, handleSubmit, errors} = useForm()
+function LoginForm() {
+    const { register, handleSubmit, errors } = useForm()
     const onSubmit = values => console.log(values);
 
 
@@ -57,16 +57,16 @@ function LoginForm(){
                 <Label>
                     Username
                 </Label>
-                <Input type = 'text' name = 'username' ref={register({required: true, max: 50, min: 15, maxLength: 50, message: 'Something wrong with your username!'})}
+                <Input type='text' name='username' ref={register({ required: true, max: 50, min: 15, maxLength: 50, message: 'Something wrong with your username!' })}
                 />
-                {errors.username && <Error>An Error has Occured! Min 15 Characters</Error>}
+                {errors.username && <Error>An Error has Occurred! Min 15 Characters</Error>}
                 <Label>
                     Password
                 </Label>
-                <Input type = 'password' name = 'password' ref={register({required: true, max: 50, min: 15, maxLength: 50})}
+                <Input type='password' name='password' ref={register({ required: true, max: 50, min: 15, maxLength: 50 })}
                 />
-                {errors.password && <Error>An Error has Occured! Min 15 Characters</Error>}
-                <Button type = 'submit' name = 'submit' value = 'Log In' />
+                {errors.password && <Error>An Error has Occurred! Min 15 Characters</Error>}
+                <Button type='submit' name='submit' value='Log In' />
             </Form>
         </Wrapper>
     )

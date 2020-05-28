@@ -5,6 +5,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import * as yup from "yup";
 import RegistrationForm from "./RegistrationForm/RegistrationForm";
 import RegFormSchema from "./RegistrationForm/RegFormSchema";
+import TestRegister from "./TestRegister";
 
 const initialFormValues = {
   first_name: "",
