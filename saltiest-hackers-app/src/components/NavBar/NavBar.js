@@ -62,7 +62,7 @@ const BurgerWrapper = styled.div`
   }
 `;
 
-const Navbar = (props, { token, logoutUser }) => {
+const Navbar = ({ token, logoutUser }) => {
   const barAnimation = useSpring({
     from: { transform: "translate3d(0, -10rem, 0)" },
     transform: "translate3d(0, 0, 0)",
@@ -80,40 +80,32 @@ const Navbar = (props, { token, logoutUser }) => {
       <NavBar style={barAnimation}>
         <FlexContainer>
           <Brand />
-          {/* <nav> */}
-            <NavLinks style={linkAnimation}>
-              <Link to="/">Home</Link>
-              <Link to="/about">About</Link>
-              <Link to="/search">Search</Link>
-              {!token && <Link to="/register">Register</Link>}
-              {token ? (
-                <Link to="/" onClick={logoutUser}>
-                  Logout
-                </Link>
-              ) : (
-                <Link to="/login">Login</Link>
-              )}
-            </NavLinks>
-          {/* </nav>   */}
+          <NavLinks style={linkAnimation}>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/search">Search</Link>
+            {!token && <Link to="/register">Register</Link>}
+            {token ? (
+              <Link to="/" onClick={logoutUser}>
+                Logout
+              </Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
+          </NavLinks>
           <BurgerWrapper>
-            <BurgerMenu
-              navbarState={props.navbarState}
-              handleNavbar={props.handleNavbar}
-            />
+            <BurgerMenu />
           </BurgerWrapper>
         </FlexContainer>
       </NavBar>
-      <CollapseMenu
-        navbarState={props.navbarState}
-        handleNavbar={props.handleNavbar}
-      />
+      <CollapseMenu />
     </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    token: state.userReducer.token,
+    token: state.userReducer.token
   };
 };
 
