@@ -121,7 +121,7 @@ const CommentCard = ({ data }) => {
   return (
     <CommentsContainer>
       {data.map((item) => {
-        console.log("CommentCard -> item", item);
+        // console.log("CommentCard -> item", item);
         return (
           <CommentWrapper>
             <Card className={cx(styles.root, shadowStyles.root)}>

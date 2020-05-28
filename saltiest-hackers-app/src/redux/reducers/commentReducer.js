@@ -11,22 +11,31 @@ import {
 } from '../actions/commentActions.js';
 
 export const initState = {
-  placeHolder: ''
+  token: localStorage.getItem('token'),
+  isLoading: false,
+  error: '',
+  commentData: [],
+  users: []
 };
 
 export const commentReducer = (state = initState, action) => {
   switch (action.type) {
     case FETCH_COMMENTS_START:
       return {
-        ...state
+        ...state,
+        isLoading: true
       };
     case FETCH_COMMENTS_SUCCESS:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        commentData: action.payload
       };
     case FETCH_COMMENTS_FAILURE:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        error: action.payload
       };
     case SAVE_COMMENT_START:
       return {

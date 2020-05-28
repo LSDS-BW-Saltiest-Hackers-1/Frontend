@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchComments } from "../../../redux/actions/commentActions.js";
 
-// import CommentList from '../../CommentList/CommentList.js';
+import CommentCard from "../Cards";
 
-function UserHome() {
+function UserHome({ token, commentData, fetchComments }) {
+  // let token = localStorage.getItem('token');
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
   return (
     <div className="user-home-page">
       <h2>User Home Page (user is logged in)</h2>
+      {/* <CommentCard /> */}
     </div>
   );
 }
 
-export default UserHome;
+const mapStateToProps = state => {
+  return {
+    token: state.commentReducer.token,
+    commentData: state.commentReducer.commentData
+  };
+};
+
+export default connect(mapStateToProps, { fetchComments })(UserHome);
