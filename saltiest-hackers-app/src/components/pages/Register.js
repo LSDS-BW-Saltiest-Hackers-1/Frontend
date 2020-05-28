@@ -5,7 +5,10 @@ import { useHistory } from "react-router-dom";
 // import styled from "styled-components";
 // import { Route, Switch, Link } from "react-router-dom";
 import * as yup from "yup";
-import { registerUser, clearNewUserData } from '../../redux/actions/userActions.js';
+import {
+  registerUser,
+  clearNewUserData,
+} from "../../redux/actions/userActions.js";
 
 import RegistrationForm from "./RegistrationForm/RegistrationForm";
 import RegFormSchema from "./RegistrationForm/RegFormSchema";
@@ -27,7 +30,12 @@ const initialFormErrors = {
 // const initialUsers = [];
 const initialDisabled = true;
 
-function Registration({ newUser, registrationError, registerUser, clearNewUserData }) {
+function Registration({
+  newUser,
+  registrationError,
+  registerUser,
+  clearNewUserData,
+}) {
   // const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -104,10 +112,14 @@ function Registration({ newUser, registrationError, registerUser, clearNewUserDa
 
   useEffect(() => {
     if (Object.keys(newUser).length !== 0) {
-      alert(`Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} and your registration has been received!`);
-      console.log(`Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} and your registration has been received!`);
+      alert(
+        `Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} and your registration has been received!`
+      );
+      console.log(
+        `Thank you ${newUser.first_name} ${newUser.last_name}. Your username is ${newUser.username} and your registration has been received!`
+      );
       clearNewUserData();
-      history.push('/login');
+      history.push("/login");
     }
   });
 
@@ -133,4 +145,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { registerUser, clearNewUserData })(Registration);
+export default connect(mapStateToProps, { registerUser, clearNewUserData })(
+  Registration
+);

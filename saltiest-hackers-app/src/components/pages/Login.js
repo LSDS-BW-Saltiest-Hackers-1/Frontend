@@ -113,7 +113,12 @@ function LoginForm({ token, isLoading, loginError, loginUser }) {
             )}
           </CardFieldset>
           <CardFieldset>
-            <CardButton onClick={handleSubmit(onSubmit)} type="button" name="submit" value="Log In">
+            <CardButton
+              onClick={handleSubmit(onSubmit)}
+              type="button"
+              name="submit"
+              value="Log In"
+            >
               Sign In
             </CardButton>
           </CardFieldset>
