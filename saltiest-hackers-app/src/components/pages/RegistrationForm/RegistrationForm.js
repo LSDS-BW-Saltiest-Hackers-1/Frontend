@@ -66,7 +66,7 @@ const RegistrationForm = (props) => {
             />
           </CardFieldset>
           <CardFieldset>
-            <CardButton disabled={disabled} type="button">
+            <CardButton onClick={onSubmit} disabled={disabled} type="button">
               Sign Up
             </CardButton>
           </CardFieldset>

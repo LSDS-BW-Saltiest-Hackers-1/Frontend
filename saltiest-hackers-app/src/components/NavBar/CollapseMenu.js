@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { toggleMenu } from "../../redux/actions/navbarActions.js";
+import { logoutUser } from "../../redux/actions/userActions.js";
 
 import { useSpring, animated } from "react-spring";
 
-const CollapseMenu = (props) => {
-  const { open } = useSpring({ open: props.navbarState ? 0 : 1 });
+const CollapseMenu = ({ token, isOpen, toggleMenu, logoutUser }) => {
+  const { open } = useSpring({ open: isOpen ? 0 : 1 });
 
-  if (props.navbarState === true) {
+  if (isOpen === true) {
     return (
       <CollapseWrapper
         style={{
@@ -20,24 +24,22 @@ const CollapseMenu = (props) => {
       >
         <NavLinks>
           <li>
-            <a href="/" onClick={props.handleNavbar}>
-              link n1
-            </a>
+            <Link to="/" onClick={toggleMenu}>Home</Link>
           </li>
           <li>
-            <a href="/" onClick={props.handleNavbar}>
-              link n2
-            </a>
+            <Link to="/about" onClick={toggleMenu}>About</Link>
           </li>
           <li>
-            <a href="/" onClick={props.handleNavbar}>
-              link n3
-            </a>
+            {!token && <Link to="/register" onClick={toggleMenu}>Register</Link>}
           </li>
           <li>
-            <a href="/" onClick={props.handleNavbar}>
-              link n4
-            </a>
+            {token ? (
+              <Link to="/" onClick={logoutUser} onClick={toggleMenu}>
+                Logout
+              </Link>
+            ) : (
+              <Link to="/login" onClick={toggleMenu}>Login</Link>
+            )}
           </li>
         </NavLinks>
       </CollapseWrapper>
@@ -46,7 +48,14 @@ const CollapseMenu = (props) => {
   return null;
 };
 
-export default CollapseMenu;
+const mapStateToProps = state => {
+  return {
+    token: state.userReducer.token,
+    isOpen: state.navbarReducer.isOpen
+  };
+};
+
+export default connect(mapStateToProps, { toggleMenu, logoutUser })(CollapseMenu);
 
 const CollapseWrapper = styled(animated.div)`
   background: #2d3436;

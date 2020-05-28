@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { toggleMenu } from "../../redux/actions/navbarActions.js";
 
-const Burgermenu = (props) => {
+const Burgermenu = ({ isOpen, toggleMenu }) => {
   return (
-    <Wrapper onClick={props.handleNavbar}>
-      <div className={props.navbarState ? "open" : ""}>
+    <Wrapper onClick={toggleMenu}>
+      <div className={isOpen ? "open" : ""}>
         <span>&nbsp;</span>
         <span>&nbsp;</span>
         <span>&nbsp;</span>
@@ -13,7 +15,13 @@ const Burgermenu = (props) => {
   );
 };
 
-export default Burgermenu;
+const mapStateToProps = state => {
+  return {
+    isOpen: state.navbarReducer.isOpen
+  };
+};
+
+export default connect(mapStateToProps, { toggleMenu })(Burgermenu);
 
 const Wrapper = styled.div`
   position: relative;
