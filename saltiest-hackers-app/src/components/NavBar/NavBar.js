@@ -80,19 +80,21 @@ const Navbar = (props, { token, logoutUser }) => {
       <NavBar style={barAnimation}>
         <FlexContainer>
           <Brand />
-          <NavLinks style={linkAnimation}>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/search">Search</Link>
-            {!token && <Link to="/register">Register</Link>}
-            {token ? (
-              <Link to="/" onClick={logoutUser}>
-                Logout
-              </Link>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
-          </NavLinks>
+          {/* <nav> */}
+            <NavLinks style={linkAnimation}>
+              <Link to="/">Home</Link>
+              <Link to="/about">About</Link>
+              <Link to="/search">Search</Link>
+              {!token && <Link to="/register">Register</Link>}
+              {token ? (
+                <Link to="/" onClick={logoutUser}>
+                  Logout
+                </Link>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+            </NavLinks>
+          {/* </nav>   */}
           <BurgerWrapper>
             <BurgerMenu
               navbarState={props.navbarState}
