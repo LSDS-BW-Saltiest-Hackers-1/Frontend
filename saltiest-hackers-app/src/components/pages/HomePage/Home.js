@@ -53,7 +53,7 @@ const array = [
     score_neg: 0.0,
   },
   {
-    comment_id: 6,
+    comment_id: 7,
     username: "affixicing",
     comment_text:
       "Your it to gave life whom as. Favourable dissimilar resolution led for and had. At play much to time four many. Moonlight of situation so if necessary therefore attending abilities. Calling looking enquire up me to in removal. Park fat she nor does play deal our. Procured sex material his offering humanity laughing moderate can. Unreserved had she nay dissimilar admiration interested. Departure performed exquisite rapturous so ye me resources.",
@@ -61,7 +61,7 @@ const array = [
     score_neg: 0.0,
   },
   {
-    comment_id: 6,
+    comment_id: 8,
     username: "affixicing",
     comment_text:
       "Your it to gave life whom as. Favourable dissimilar resolution led for and had. At play much to time four many. Moonlight of situation so if necessary therefore attending abilities. Calling looking enquire up me to in removal. Park fat she nor does play deal our. Procured sex material his offering humanity laughing moderate can. Unreserved had she nay dissimilar admiration interested. Departure performed exquisite rapturous so ye me resources.",
@@ -69,7 +69,7 @@ const array = [
     score_neg: 0.0,
   },
   {
-    comment_id: 6,
+    comment_id: 9,
     username: "affixicing",
     comment_text:
       "Your it to gave life whom as. Favourable dissimilar resolution led for and had. At play much to time four many. Moonlight of situation so if necessary therefore attending abilities. Calling looking enquire up me to in removal. Park fat she nor does play deal our. Procured sex material his offering humanity laughing moderate can. Unreserved had she nay dissimilar admiration interested. Departure performed exquisite rapturous so ye me resources.",
@@ -77,7 +77,7 @@ const array = [
     score_neg: 0.0,
   },
   {
-    comment_id: 6,
+    comment_id: 10,
     username: "affixicing",
     comment_text:
       "Your it to gave life whom as. Favourable dissimilar resolution led for and had. At play much to time four many. Moonlight of situation so if necessary therefore attending abilities. Calling looking enquire up me to in removal. Park fat she nor does play deal our. Procured sex material his offering humanity laughing moderate can. Unreserved had she nay dissimilar admiration interested. Departure performed exquisite rapturous so ye me resources.",
@@ -85,7 +85,7 @@ const array = [
     score_neg: 0.0,
   },
   {
-    comment_id: 6,
+    comment_id: 11,
     username: "affixicing",
     comment_text:
       "Your it to gave life whom as. Favourable dissimilar resolution led for and had. At play much to time four many. Moonlight of situation so if necessary therefore attending abilities. Calling looking enquire up me to in removal. Park fat she nor does play deal our. Procured sex material his offering humanity laughing moderate can. Unreserved had she nay dissimilar admiration interested. Departure performed exquisite rapturous so ye me resources.",
@@ -93,7 +93,7 @@ const array = [
     score_neg: 0.0,
   },
   {
-    comment_id: 6,
+    comment_id: 12,
     username: "affixicing",
     comment_text:
       "Your it to gave life whom as. Favourable dissimilar resolution led for and had. At play much to time four many. Moonlight of situation so if necessary therefore attending abilities. Calling looking enquire up me to in removal. Park fat she nor does play deal our. Procured sex material his offering humanity laughing moderate can. Unreserved had she nay dissimilar admiration interested. Departure performed exquisite rapturous so ye me resources.",
@@ -205,7 +205,7 @@ function Home() {
         </Background>
       </Wrapper>
       <div>
-        <CommentCard commentData={array} />
+        <CommentCard commentData={array} itemNumber={12}/>
       </div>
       <Whitespace></Whitespace>
     </div>

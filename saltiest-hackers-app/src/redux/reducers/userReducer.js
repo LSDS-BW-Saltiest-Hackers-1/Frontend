@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 import {
   FETCH_USER_START,
   FETCH_USER_SUCCESS,
@@ -14,6 +16,7 @@ import {
 
 export const initState = {
   token: localStorage.getItem('token'),
+  userId: jwt.decode(localStorage.getItem('token')).sub,
   isLoading: false,
   error: '',
   newUser: {}
@@ -43,6 +46,7 @@ export const userReducer = (state = initState, action) => {
       return {
         ...state,
         token: action.payload.token,
+        userId: action.userId,
         isLoading: false,
         error: ''
       };
@@ -55,7 +59,8 @@ export const userReducer = (state = initState, action) => {
     case LOGOUT_USER:
       return {
         ...state,
-        token: ''
+        token: '',
+        userId: ''
       };
     case REGISTER_USER_START:
       return {

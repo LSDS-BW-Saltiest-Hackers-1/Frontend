@@ -5,6 +5,9 @@ import {
   FETCH_MISC_COMMENT_DATA_START,
   FETCH_MISC_COMMENT_DATA_SUCCESS,
   FETCH_MISC_COMMENT_DATA_FAILURE,
+  FETCH_SAVED_COMMENTS_START,
+  FETCH_SAVED_COMMENTS_SUCCESS,
+  FETCH_SAVED_COMMENTS_FAILURE,
   SAVE_COMMENT_START,
   SAVE_COMMENT_SUCCESS,
   SAVE_COMMENT_FAILURE,
@@ -22,7 +25,8 @@ export const initState = {
     topSaltyComments: [],
     topSweetComments: []
   },
-  userData: []
+  userData: [],
+  userSavedComments: []
 };
 
 export const commentReducer = (state = initState, action) => {
@@ -64,17 +68,43 @@ export const commentReducer = (state = initState, action) => {
         isLoading: false,
         error: action.payload
       };
-    case SAVE_COMMENT_START:
+    case FETCH_SAVED_COMMENTS_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case FETCH_SAVED_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        // userSavedCommentNumbers:
+        userSavedComments: action.commentData.filter(comment => {
+          // console.log(action.payload.includes({ favorite_comments: comment.comment_id }));
+          // console.log(action.payload);
+          let savedCommentIdArray = action.payload.map(favComment => favComment.favorite_comments);
+          return savedCommentIdArray.includes(comment.comment_id);
+        })
+      };
+    case FETCH_SAVED_COMMENTS_FAILURE:
       return {
         ...state
+      };
+    case SAVE_COMMENT_START:
+      return {
+        ...state,
+        isLoading: true
       };
     case SAVE_COMMENT_SUCCESS:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        userSavedComments: action.payload
       };
     case SAVE_COMMENT_FAILURE:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        error: action.payload
       };
     case DELETE_COMMENT_START:
       return {
