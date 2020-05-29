@@ -16,7 +16,7 @@ import {
 
 export const initState = {
   token: localStorage.getItem('token'),
-  userId: jwt.decode(localStorage.getItem('token')).sub,
+  userId: (localStorage.getItem('token') ? jwt.decode(localStorage.getItem('token')).sub : ''),
   isLoading: false,
   error: '',
   newUser: {}
