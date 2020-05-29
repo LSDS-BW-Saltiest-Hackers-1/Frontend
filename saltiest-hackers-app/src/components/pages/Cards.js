@@ -16,10 +16,10 @@ import logo from "../assets/logo2.png";
 const CommentsContainer = styled.div`
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: auto;
-  width: 80%;
+  width: 100%;
 
   @media (max-width: 500px) {
     justify-content: center;
@@ -118,7 +118,12 @@ const CommentCard = ({ commentData, itemNumber, userId, saveComment }) => {
                     heading={item.username}
                     body={item.comment_text}
                   />
-                  <Button onClick={() => saveComment(userId, item.comment_id)} className={buttonStyles}>Add to Favorites</Button>
+                  <Button
+                    onClick={() => saveComment(userId, item.comment_id)}
+                    className={buttonStyles}
+                  >
+                    Add to Favorites
+                  </Button>
                 </CardContent>
               </Card>
             </CommentWrapper>
@@ -130,7 +135,7 @@ const CommentCard = ({ commentData, itemNumber, userId, saveComment }) => {
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.userReducer.userId
+    userId: state.userReducer.userId,
   };
 };
 

@@ -188,6 +188,10 @@ const Wrapper = styled.div`
   //
 `;
 
+const CardContainer = styled.div`
+  width: 100%;
+`;
+
 const Whitespace = styled.div`
   margin-top: 4%;
 `;
@@ -212,9 +216,9 @@ function Home() {
           </DisplayOver>
         </Background>
       </Wrapper>
-      <div>
-        <CommentCard commentData={array} itemNumber={12}/>
-      </div>
+      <CardContainer>
+        <CommentCard commentData={array} itemNumber={12} />
+      </CardContainer>
       <Whitespace></Whitespace>
     </div>
   );

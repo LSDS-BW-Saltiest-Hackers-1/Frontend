@@ -39,7 +39,8 @@ const UserHomePage = styled.div`
 `;
 
 const CardsDiv = styled.div`
-  margin-top: 5%;
+  margin: 5% auto auto auto;
+  width: 80%;
 `;
 
 const initShownData = {
