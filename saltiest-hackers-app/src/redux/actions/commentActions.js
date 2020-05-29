@@ -20,7 +20,6 @@ export const fetchCommentData = targetEndPoint => {
     axiosWithAuth()
       .get(targetEndPoint)
       .then(res => {
-        console.log(res);
         dispatch({ type: FETCH_COMMENT_DATA_SUCCESS, payload: res.data });
         // res.data.filter((item, i) => i <= 1000)
       })
@@ -59,7 +58,6 @@ export const fetchSavedComments = (userId, commentData) => {
     axios
       .get(`${apiURL}/api/comments/${userId}/favorites`)
       .then(res => {
-        console.log(res);
         dispatch({ type: FETCH_SAVED_COMMENTS_SUCCESS, payload: res.data, commentData: commentData });
       })
       .catch(err => {
@@ -78,7 +76,6 @@ export const saveComment = (userId, favCommentId) => {
     axios
       .post(`${apiURL}/api/comments/${userId}/add/${favCommentId}`)
       .then(res => {
-        console.log(res);
         dispatch({ type: SAVE_COMMENT_SUCCESS, payload: res.data });
       })
       .catch(err => {
