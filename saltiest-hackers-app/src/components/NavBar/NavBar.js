@@ -82,7 +82,7 @@ const Navbar = ({ token, logoutUser }) => {
           <Brand />
           <NavLinks style={linkAnimation}>
             <Link to="/">Home</Link>
-            {!token && <Link to="/about">About</Link>}
+            {!token && <a href="https://angry-lamport-3504a8.netlify.app/index.html">About</a>}
             {!token && <Link to="/register">Register</Link>}
             {token && <Link to="/saved">Saved</Link>}
             {token && <Link to="/search">Search</Link>}
