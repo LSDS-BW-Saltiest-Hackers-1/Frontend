@@ -84,6 +84,7 @@ const Navbar = ({ token, logoutUser }) => {
             <Link to="/">Home</Link>
             {token ? <Link to="/account">Account</Link> : <Link to="/about">About</Link>}
             {!token && <Link to="/register">Register</Link>}
+            {token && <Link to="/saved">Saved</Link>}
             {token && <Link to="/search">Search</Link>}
             {token ? (
               <Link to="/" onClick={logoutUser}>
