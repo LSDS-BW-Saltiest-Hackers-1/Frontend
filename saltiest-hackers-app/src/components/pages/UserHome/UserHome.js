@@ -14,7 +14,9 @@ function UserHome({ token, isLoading, commentData, miscCommentData, fetchComment
   const [numOfComments, setNumOfComments] = useState(100);
   // let token = localStorage.getItem("token");
   useEffect(() => {
-    fetchCommentData("/home");
+    if (!commentData.length > 0) {
+      fetchCommentData("/home");
+    }
   }, []);
 
   const getMiscComments = (targetEndPoint, targetNumOfComments) => {
