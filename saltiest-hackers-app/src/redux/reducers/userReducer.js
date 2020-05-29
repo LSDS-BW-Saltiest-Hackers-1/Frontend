@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 import {
   FETCH_USER_START,
   FETCH_USER_SUCCESS,
@@ -14,7 +16,7 @@ import {
 
 export const initState = {
   token: localStorage.getItem('token'),
-  userId: '',
+  userId: jwt.decode(localStorage.getItem('token')).sub,
   isLoading: false,
   error: '',
   newUser: {}

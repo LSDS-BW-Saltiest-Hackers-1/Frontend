@@ -89,7 +89,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   },
 }));
 
-const CommentCard = ({ commentData, itemNumber, saveComment }) => {
+const CommentCard = ({ commentData, itemNumber, userId, saveComment }) => {
   const styles = useStyles();
   const {
     button: buttonStyles,
@@ -118,7 +118,7 @@ const CommentCard = ({ commentData, itemNumber, saveComment }) => {
                     heading={item.username}
                     body={item.comment_text}
                   />
-                  <Button onClick={() => saveComment()} className={buttonStyles}>Add to Favorites</Button>
+                  <Button onClick={() => saveComment(userId, item.comment_id)} className={buttonStyles}>Add to Favorites</Button>
                 </CardContent>
               </Card>
             </CommentWrapper>
@@ -129,10 +129,9 @@ const CommentCard = ({ commentData, itemNumber, saveComment }) => {
 };
 
 const mapStateToProps = (state) => {
-  // return {
-  //   commentData: state.commentReducer.commentData
-  // };
-  return state;
+  return {
+    userId: state.userReducer.userId
+  };
 };
 
 export default connect(mapStateToProps, { saveComment })(CommentCard);
