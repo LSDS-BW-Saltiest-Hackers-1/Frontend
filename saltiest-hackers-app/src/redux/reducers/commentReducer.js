@@ -18,7 +18,10 @@ export const initState = {
   isLoading: false,
   error: '',
   commentData: [],
-  miscCommentData: [],
+  miscCommentData: {
+    topSaltyComments: [],
+    topSweetComments: []
+  },
   userData: []
 };
 
@@ -50,7 +53,10 @@ export const commentReducer = (state = initState, action) => {
       return {
         ...state,
         isLoading: false,
-        miscCommentData: action.payload
+        miscCommentData: {
+          ...state.miscCommentData,
+          [action.targetEndPoint === '/top100_salty_comments' ? 'topSaltyComments' : 'topSweetComments']: action.payload
+        }
       };
     case FETCH_MISC_COMMENT_DATA_FAILURE:
       return {

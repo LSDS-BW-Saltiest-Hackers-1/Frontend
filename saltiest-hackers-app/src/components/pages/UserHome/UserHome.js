@@ -10,17 +10,33 @@ const UserHomePage = styled.div`
   margin-top: 10%;
 `;
 
+const initShownData = {
+  commentData: false,
+  topSaltyComments: false,
+  topSweetComments: false
+};
+
 function UserHome({ token, isLoading, commentData, miscCommentData, fetchCommentData, fetchMiscCommentData }) {
   const [numOfComments, setNumOfComments] = useState(100);
-  // let token = localStorage.getItem("token");
+  const [shownData, setShownData] = useState(initShownData);
+
   useEffect(() => {
     if (!commentData.length > 0) {
       fetchCommentData("/home");
     }
+    if (!miscCommentData.topSaltyComments.length > 0) {
+      fetchMiscCommentData("/top100_salty_comments");
+    }
+    if (!miscCommentData.topSweetComments.length > 0) {
+      fetchMiscCommentData("/top100_sweetest_comments");
+    }
   }, []);
 
-  const getMiscComments = (targetEndPoint, targetNumOfComments) => {
-    fetchMiscCommentData(targetEndPoint);
+  const showComments = (shownDataTarget, targetNumOfComments) => {
+    setShownData({
+      ...initShownData,
+      [shownDataTarget]: true
+    });
     setNumOfComments(targetNumOfComments);
   };
 
@@ -29,14 +45,13 @@ function UserHome({ token, isLoading, commentData, miscCommentData, fetchComment
       <h2>Salt User Home Page</h2>
       {isLoading && <h2>Loading Data...</h2>}
       <div>
-        {/* <button
+        <button
           onClick={(e) => {
             e.preventDefault();
-            getMiscComments("/home");
-            setNumOfComments(100);
+            showComments("commentData", 100);
           }}>
-          Get 100 Comments
-        </button> */}
+          Show 100 Comments
+        </button>
       </div>
       <div className="misc-data">
         {/* <button onClick={() => getTargetData()}>Top 10 Salty Users</button> */}
@@ -44,7 +59,7 @@ function UserHome({ token, isLoading, commentData, miscCommentData, fetchComment
           <button
             onClick={(e) => {
               e.preventDefault();
-              getMiscComments("/top100_salty_comments", 10);
+              showComments("topSaltyComments", 10);
             }}>
             Top 10 Salty Comments
           </button>
@@ -54,14 +69,15 @@ function UserHome({ token, isLoading, commentData, miscCommentData, fetchComment
           <button
             onClick={(e) => {
               e.preventDefault();
-              getMiscComments("/top100_sweetest_comments", 10);
+              showComments("topSweetComments", 10);
             }}>
             Top 10 Sweet Comments
           </button>
         </div>
       </div>
-      <CommentCard commentData={commentData} itemNumber={numOfComments}/>
-      <CommentCard commentData={miscCommentData} itemNumber={numOfComments}/>
+      {shownData.commentData && <CommentCard commentData={commentData} itemNumber={numOfComments}/>}
+      {shownData.topSaltyComments && <CommentCard commentData={miscCommentData.topSaltyComments} itemNumber={numOfComments}/>}
+      {shownData.topSweetComments && <CommentCard commentData={miscCommentData.topSweetComments} itemNumber={numOfComments}/>}
     </UserHomePage>
   );
 }
