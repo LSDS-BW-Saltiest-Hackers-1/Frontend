@@ -11,21 +11,40 @@ const apiURL = 'https://saltiest-hacker-bw.herokuapp.com';
 // https://saltyapp.herokuapp.com/top100_salty_comments
 // https://saltyapp.herokuapp.com/top100_sweetest_comments
 
-export const FETCH_COMMENTS_START = 'FETCH_COMMENTS_START';
-export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
-export const FETCH_COMMENTS_FAILURE = 'FETCH_COMMENTS_FAILURE';
-export const fetchComments = () => {
+export const FETCH_COMMENT_DATA_START = 'FETCH_COMMENT_DATA_START';
+export const FETCH_COMMENT_DATA_SUCCESS = 'FETCH_COMMENT_DATA_SUCCESS';
+export const FETCH_COMMENT_DATA_FAILURE = 'FETCH_COMMENT_DATA_FAILURE';
+export const fetchCommentData = targetEndPoint => {
   return dispatch => {
-    dispatch({ type: FETCH_COMMENTS_START });
+    dispatch({ type: FETCH_COMMENT_DATA_START });
     axiosWithAuth()
-      .get('/home')
+      .get(targetEndPoint)
       .then(res => {
         console.log(res);
-        dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
+        dispatch({ type: FETCH_COMMENT_DATA_SUCCESS, payload: res.data });
       })
       .catch(err => {
         console.log(err);
-        dispatch({ type: FETCH_COMMENTS_FAILURE, payload: err });
+        dispatch({ type: FETCH_COMMENT_DATA_FAILURE, payload: err });
+      });
+  };
+};
+
+export const FETCH_MISC_COMMENT_DATA_START = 'FETCH_MISC_COMMENT_DATA_START';
+export const FETCH_MISC_COMMENT_DATA_SUCCESS = 'FETCH_MISC_COMMENT_DATA_SUCCESS';
+export const FETCH_MISC_COMMENT_DATA_FAILURE = 'FETCH_MISC_COMMENT_DATA_FAILURE';
+export const fetchMiscCommentData = targetEndPoint => {
+  return dispatch => {
+    dispatch({ type: FETCH_MISC_COMMENT_DATA_START });
+    axiosWithAuth()
+      .get(targetEndPoint)
+      .then(res => {
+        console.log(res);
+        dispatch({ type: FETCH_MISC_COMMENT_DATA_SUCCESS, payload: res.data })
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: FETCH_MISC_COMMENT_DATA_FAILURE, payload: err })
       });
   };
 };

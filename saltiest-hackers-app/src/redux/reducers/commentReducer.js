@@ -1,7 +1,10 @@
 import {
-  FETCH_COMMENTS_START,
-  FETCH_COMMENTS_SUCCESS,
-  FETCH_COMMENTS_FAILURE,
+  FETCH_COMMENT_DATA_START,
+  FETCH_COMMENT_DATA_SUCCESS,
+  FETCH_COMMENT_DATA_FAILURE,
+  FETCH_MISC_COMMENT_DATA_START,
+  FETCH_MISC_COMMENT_DATA_SUCCESS,
+  FETCH_MISC_COMMENT_DATA_FAILURE,
   SAVE_COMMENT_START,
   SAVE_COMMENT_SUCCESS,
   SAVE_COMMENT_FAILURE,
@@ -15,23 +18,41 @@ export const initState = {
   isLoading: false,
   error: '',
   commentData: [],
-  users: []
+  miscCommentData: [],
+  userData: []
 };
 
 export const commentReducer = (state = initState, action) => {
   switch (action.type) {
-    case FETCH_COMMENTS_START:
+    case FETCH_COMMENT_DATA_START:
       return {
         ...state,
         isLoading: true
       };
-    case FETCH_COMMENTS_SUCCESS:
+    case FETCH_COMMENT_DATA_SUCCESS:
       return {
         ...state,
         isLoading: false,
         commentData: action.payload
       };
-    case FETCH_COMMENTS_FAILURE:
+    case FETCH_COMMENT_DATA_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    case FETCH_MISC_COMMENT_DATA_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case FETCH_MISC_COMMENT_DATA_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        miscCommentData: action.payload
+      };
+    case FETCH_MISC_COMMENT_DATA_FAILURE:
       return {
         ...state,
         isLoading: false,

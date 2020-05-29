@@ -112,7 +112,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   },
 }));
 
-const CommentCard = ({ commentData }) => {
+const CommentCard = ({ commentData, itemNumber }) => {
   const styles = useStyles();
   const {
     button: buttonStyles,
@@ -122,7 +122,7 @@ const CommentCard = ({ commentData }) => {
   return (
     <CommentsContainer>
       {commentData
-        .filter((item, i) => i < 20)
+        .filter((item, i) => i < itemNumber)
         .map((item) => {
         // console.log("CommentCard -> item", item);
         return (
