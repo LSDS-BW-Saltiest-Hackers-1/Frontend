@@ -82,8 +82,7 @@ const Navbar = ({ token, logoutUser }) => {
           <Brand />
           <NavLinks style={linkAnimation}>
             <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/search">Search</Link>
+            {!token && <Link to="/about">About</Link>}
             {!token && <Link to="/register">Register</Link>}
             {token && <Link to="/saved">Saved</Link>}
             {token && <Link to="/search">Search</Link>}
