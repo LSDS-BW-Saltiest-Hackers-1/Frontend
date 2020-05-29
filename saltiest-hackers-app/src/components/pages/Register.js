@@ -41,29 +41,6 @@ function Registration({
   const [disabled, setDisabled] = useState(initialDisabled);
   const history = useHistory();
 
-  // const registerUser = (newUser) => {
-  //   axios
-  //     .post(
-  //       "https://saltiest-hacker-bw.herokuapp.com/api/users/register",
-  //       newUser
-  //     )
-  //     .then((res) => {
-  //       setUsers([res.data, ...users]);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Server Error", error);
-  //     })
-  //     .finally(() => {
-  //       alert(
-  //         `Thank you ${newUser.first_name}. Your registration has been received!`
-  //       );
-  //       console.log(
-  //         `Thank you ${newUser.first_name}. Your registration has been received!`
-  //       );
-  //       setFormValues(initialFormValues);
-  //     });
-  // };
-
   const onInputChange = (event) => {
     const { name } = event.target;
     const { value } = event.target;

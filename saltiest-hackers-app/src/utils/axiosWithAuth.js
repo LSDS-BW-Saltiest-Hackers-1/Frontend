@@ -6,6 +6,6 @@ export const axiosWithAuth = () => {
     headers: {
       Authorization: token
     },
-    baseURL: 'http://saltyapp.herokuapp.com'
+    baseURL: 'https://saltyapp.herokuapp.com'
   });
 };

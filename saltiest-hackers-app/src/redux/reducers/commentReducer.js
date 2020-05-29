@@ -77,10 +77,7 @@ export const commentReducer = (state = initState, action) => {
       return {
         ...state,
         isLoading: false,
-        // userSavedCommentNumbers:
         userSavedComments: action.commentData.filter(comment => {
-          // console.log(action.payload.includes({ favorite_comments: comment.comment_id }));
-          // console.log(action.payload);
           let savedCommentIdArray = action.payload.map(favComment => favComment.favorite_comments);
           return savedCommentIdArray.includes(comment.comment_id);
         })
