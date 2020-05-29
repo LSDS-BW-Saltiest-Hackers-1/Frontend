@@ -123,29 +123,29 @@ const CommentCard = ({ commentData, itemNumber }) => {
     <CommentsContainer>
       {commentData
         .filter((item, i) => i < itemNumber)
-        .map((item) => {
+        .map(item => {
         // console.log("CommentCard -> item", item);
-        return (
-          <CommentWrapper>
-            <Card className={cx(styles.root, shadowStyles.root)}>
-              <CardMedia
-                className={styles.media}
-                image={
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
-                }
-              />
-              <CardContent>
-                <TextInfoContent
-                  classes={contentStyles}
-                  overline={"28 MAR 2019"}
-                  heading={item.username}
-                  body={item.comment_text}
+          return (
+            <CommentWrapper key={item.comment_id}>
+              <Card className={cx(styles.root, shadowStyles.root)}>
+                <CardMedia
+                  className={styles.media}
+                  image={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
+                  }
                 />
-                <Button className={buttonStyles}>Add to Favorites</Button>
-              </CardContent>
-            </Card>
-          </CommentWrapper>
-        );
+                <CardContent>
+                  <TextInfoContent
+                    classes={contentStyles}
+                    overline={"28 MAR 2019"}
+                    heading={item.username}
+                    body={item.comment_text}
+                  />
+                  <Button className={buttonStyles}>Add to Favorites</Button>
+                </CardContent>
+              </Card>
+            </CommentWrapper>
+          );
       })}
     </CommentsContainer>
   );
