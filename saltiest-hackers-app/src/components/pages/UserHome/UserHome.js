@@ -39,7 +39,8 @@ const UserHomePage = styled.div`
 `;
 
 const CardsDiv = styled.div`
-  margin-top: 5%;
+  margin: 5% auto auto auto;
+  width: 80%;
 `;
 
 const initShownData = {
@@ -82,63 +83,65 @@ function UserHome({
   };
 
   return (
-    <UserHomePage>
-      {/* <h2>Salt User Home Page</h2> */}
-      {isLoading && <h2>Loading Data...</h2>}
-      <MuiThemeProvider theme={theme} className={classes.root}>
-        <ButtonGroup
-          variant="contained"
-          color="secondary"
-          aria-label="contained primary button group"
-        >
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              showComments("commentData", 100);
-            }}
+    <MuiThemeProvider theme={theme}>
+      <UserHomePage>
+        {/* <h2>Salt User Home Page</h2> */}
+        {isLoading && <h2>Loading Data...</h2>}
+        <div className={classes.root}>
+          <ButtonGroup
+            variant="contained"
+            color="secondary"
+            aria-label="contained primary button group"
           >
-            Show 100 Comments
-          </Button>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              showComments("topSaltyComments", 10);
-            }}
-          >
-            Top 10 Salty Comments
-          </Button>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              showComments("topSweetComments", 10);
-            }}
-          >
-            Top 10 Sweet Comments
-          </Button>
-        </ButtonGroup>
-      </MuiThemeProvider>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                showComments("commentData", 100);
+              }}
+            >
+              Show 100 Comments
+            </Button>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                showComments("topSaltyComments", 10);
+              }}
+            >
+              Top 10 Salty Comments
+            </Button>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                showComments("topSweetComments", 10);
+              }}
+            >
+              Top 10 Sweet Comments
+            </Button>
+          </ButtonGroup>
+        </div>
 
-      {/* <button onClick={() => getTargetData()}>Top 10 Salty Users</button> */}
+        {/* <button onClick={() => getTargetData()}>Top 10 Salty Users</button> */}
 
-      {/* <button onClick={() => getTargetData()}>Top 10 Sweet Users</button> */}
-      <CardsDiv>
-        {shownData.commentData && (
-          <CommentCard commentData={commentData} itemNumber={numOfComments} />
-        )}
-        {shownData.topSaltyComments && (
-          <CommentCard
-            commentData={miscCommentData.topSaltyComments}
-            itemNumber={numOfComments}
-          />
-        )}
-        {shownData.topSweetComments && (
-          <CommentCard
-            commentData={miscCommentData.topSweetComments}
-            itemNumber={numOfComments}
-          />
-        )}
-      </CardsDiv>
-    </UserHomePage>
+        {/* <button onClick={() => getTargetData()}>Top 10 Sweet Users</button> */}
+        <CardsDiv>
+          {shownData.commentData && (
+            <CommentCard commentData={commentData} itemNumber={numOfComments} />
+          )}
+          {shownData.topSaltyComments && (
+            <CommentCard
+              commentData={miscCommentData.topSaltyComments}
+              itemNumber={numOfComments}
+            />
+          )}
+          {shownData.topSweetComments && (
+            <CommentCard
+              commentData={miscCommentData.topSweetComments}
+              itemNumber={numOfComments}
+            />
+          )}
+        </CardsDiv>
+      </UserHomePage>
+    </MuiThemeProvider>
   );
 }
 
