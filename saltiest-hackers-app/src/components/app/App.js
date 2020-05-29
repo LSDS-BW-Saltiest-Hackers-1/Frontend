@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import axios from "axios";
+import jwt from "jsonwebtoken";
 
 import "./App.css";
 import Home from "../pages/HomePage/Home";
@@ -27,20 +28,11 @@ function App({ token }) {
   //     })
   // }, []);
 
-  useEffect(() => {
-    axios
-      .get("https://saltiest-hacker-bw.herokuapp.com/api/users")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   // useEffect(() => {
+  //   const userID = 3;
+  //   const favCommentId = 50;
   //   axios
-  //     .get("https://saltyapp.herokuapp.com/top20_saltiest_users")
+  //     .post(`https://saltiest-hacker-bw.herokuapp.com/api/comments/${userID}/add/${favCommentId}`)
   //     .then((res) => {
   //       console.log(res);
   //     })
@@ -48,6 +40,17 @@ function App({ token }) {
   //       console.log(err);
   //     });
   // }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://saltiest-hacker-bw.herokuapp.com/api/comments/3/favorites")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className="App">

@@ -50,21 +50,40 @@ export const fetchMiscCommentData = targetEndPoint => {
   };
 };
 
-export const SAVE_COMMENT_START = 'SAVE_COMMENT_START';
-export const SAVE_COMMENT_SUCCESS = 'SAVE_COMMENT_SUCCESS';
-export const SAVE_COMMENT_FAILURE = 'SAVE_COMMENT_FAILURE';
-export const saveComment = () => {
+export const FETCH_SAVED_COMMENTS_START = 'FETCH_SAVED_COMMENTS_START';
+export const FETCH_SAVED_COMMENTS_SUCCESS = 'FETCH_SAVED_COMMENTS_SUCCESS';
+export const FETCH_SAVED_COMMENTS_FAILURE = 'FETCH_SAVED_COMMENTS_FAILURE';
+export const fetchSavedComments = (userId, commentData) => {
   return dispatch => {
-    dispatch({ type: SAVE_COMMENT_START });
-    axiosWithAuth()
-      .post('')
+    dispatch({ type: FETCH_SAVED_COMMENTS_START });
+    axios
+      .get(`${apiURL}/api/comments/${userId}/favorites`)
       .then(res => {
         console.log(res);
-        // dispatch({ type: SAVE_COMMENT_SUCCESS });
+        dispatch({ type: FETCH_SAVED_COMMENTS_SUCCESS, payload: res.data, commentData: commentData });
       })
       .catch(err => {
         console.log(err);
-        // dispatch({ type: SAVE_COMMENT_FAILURE });
+        dispatch({ type: FETCH_SAVED_COMMENTS_FAILURE, payload: err });
+      });
+  };
+};
+
+export const SAVE_COMMENT_START = 'SAVE_COMMENT_START';
+export const SAVE_COMMENT_SUCCESS = 'SAVE_COMMENT_SUCCESS';
+export const SAVE_COMMENT_FAILURE = 'SAVE_COMMENT_FAILURE';
+export const saveComment = (userId, favCommentId) => {
+  return dispatch => {
+    dispatch({ type: SAVE_COMMENT_START });
+    axios
+      .post(`${apiURL}/api/comments/${userId}/add/${favCommentId}`)
+      .then(res => {
+        console.log(res);
+        dispatch({ type: SAVE_COMMENT_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: SAVE_COMMENT_FAILURE, payload: err });
       });
   };
 };
