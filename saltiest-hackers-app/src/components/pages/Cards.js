@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import cx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -22,6 +23,8 @@ const CommentsContainer = styled.div`
 
 const CommentWrapper = styled.div`
   margin: 2%;
+  width: 20%;
+  height: 300px;
 `;
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
@@ -36,16 +39,16 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     overflow: "initial",
     background: "#ffffff",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
-    paddingBottom: spacing(2),
+    paddingBottom: spacing(1),
     [breakpoints.up("md")]: {
       flexDirection: "row",
-      paddingTop: spacing(2),
+      paddingTop: spacing(1),
     },
   },
   media: {
-    width: "88%",
+    width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: spacing(-3),
@@ -81,7 +84,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   },
 }));
 
-const CommentCard = ({ data }) => {
+const CommentCard = ({ commentData }) => {
   const styles = useStyles();
   const {
     button: buttonStyles,
@@ -90,33 +93,42 @@ const CommentCard = ({ data }) => {
   const shadowStyles = useOverShadowStyles();
   return (
     <CommentsContainer>
-      {data.map((item) => {
-        console.log("CommentCard -> item", item);
-        return (
-          <CommentWrapper>
-            <Card className={cx(styles.root, shadowStyles.root)}>
-              <CardMedia
-                className={styles.media}
-                image={logo}
-                // image={
-                //   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
-                // }
-              />
-              <CardContent>
-                <TextInfoContent
-                  classes={contentStyles}
-                  overline={"28 MAR 2019"}
-                  heading={item.username}
-                  body={item.comment_text}
-                />
-                <Button className={buttonStyles}>Add to Favorites</Button>
-              </CardContent>
-            </Card>
-          </CommentWrapper>
-        );
-      })}
+      {commentData
+        .filter((item, i) => i < 20)
+        .map((item) => {
+          // console.log("CommentCard -> item", item);
+          return (
+            <CommentWrapper>
+              <Card className={cx(styles.root, shadowStyles.root)}>
+                {/* <CardMedia
+                  className={styles.media}
+                  image={logo}
+                  // image={
+                  //   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
+                  // }
+                /> */}
+                <CardContent>
+                  <TextInfoContent
+                    classes={contentStyles}
+                    overline={"28 MAR 2019"}
+                    heading={item.username}
+                    body={item.comment_text}
+                  />
+                  <Button className={buttonStyles}>Add to Favorites</Button>
+                </CardContent>
+              </Card>
+            </CommentWrapper>
+          );
+        })}
     </CommentsContainer>
   );
 };
 
-export default CommentCard;
+const mapStateToProps = (state) => {
+  // return {
+  //   commentData: state.commentReducer.commentData
+  // };
+  return state;
+};
+
+export default connect(mapStateToProps, {})(CommentCard);

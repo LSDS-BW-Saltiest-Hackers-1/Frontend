@@ -24,13 +24,21 @@ const CollapseMenu = ({ token, isOpen, toggleMenu, logoutUser }) => {
       >
         <NavLinks>
           <li>
-            <Link to="/" onClick={toggleMenu}>Home</Link>
+            <Link to="/" onClick={toggleMenu}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/about" onClick={toggleMenu}>About</Link>
+            <Link to="/about" onClick={toggleMenu}>
+              About
+            </Link>
           </li>
           <li>
-            {!token && <Link to="/register" onClick={toggleMenu}>Register</Link>}
+            {!token && (
+              <Link to="/register" onClick={toggleMenu}>
+                Register
+              </Link>
+            )}
           </li>
           <li>
             {token ? (
@@ -38,7 +46,9 @@ const CollapseMenu = ({ token, isOpen, toggleMenu, logoutUser }) => {
                 Logout
               </Link>
             ) : (
-              <Link to="/login" onClick={toggleMenu}>Login</Link>
+              <Link to="/login" onClick={toggleMenu}>
+                Login
+              </Link>
             )}
           </li>
         </NavLinks>
@@ -48,14 +58,16 @@ const CollapseMenu = ({ token, isOpen, toggleMenu, logoutUser }) => {
   return null;
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     token: state.userReducer.token,
-    isOpen: state.navbarReducer.isOpen
+    isOpen: state.navbarReducer.isOpen,
   };
 };
 
-export default connect(mapStateToProps, { toggleMenu, logoutUser })(CollapseMenu);
+export default connect(mapStateToProps, { toggleMenu, logoutUser })(
+  CollapseMenu
+);
 
 const CollapseWrapper = styled(animated.div)`
   background: #2d3436;
@@ -63,6 +75,7 @@ const CollapseWrapper = styled(animated.div)`
   top: 4.5rem;
   left: 0;
   right: 0;
+  z-index: 1;
 `;
 
 const NavLinks = styled.ul`

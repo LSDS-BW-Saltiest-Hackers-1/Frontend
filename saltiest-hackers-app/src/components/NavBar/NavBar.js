@@ -15,7 +15,7 @@ const NavBar = styled(animated.nav)`
   top: 0;
   left: 0;
   background: #31393c;
-  z-index: 1;
+  z-index: 2;
   font-size: 1.4rem;
 `;
 
@@ -97,8 +97,8 @@ const Navbar = ({ token, logoutUser }) => {
             <BurgerMenu />
           </BurgerWrapper>
         </FlexContainer>
-        <CollapseMenu />
       </NavBar>
+      <CollapseMenu />
     </>
   );
 };

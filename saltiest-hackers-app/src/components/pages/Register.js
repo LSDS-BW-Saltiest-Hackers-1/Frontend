@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-// import axios from "axios";
 // import styled from "styled-components";
 // import { Route, Switch, Link } from "react-router-dom";
 import * as yup from "yup";
