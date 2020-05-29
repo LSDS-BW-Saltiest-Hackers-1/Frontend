@@ -170,7 +170,7 @@ function Home() {
         </Background>
       </Wrapper>
       <div>
-        {/* <CommentCard data={array} /> */}
+        {/* <CommentCard commentData={array} /> */}
         {/* {array.map((user) => {
           return (
             <CommentWrapper>
