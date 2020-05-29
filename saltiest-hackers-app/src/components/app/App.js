@@ -9,6 +9,7 @@ import NavBar from "../NavBar/NavBar.js";
 import UserHome from "../pages/UserHome/UserHome";
 import Login from "../pages/Login";
 import Registration from "../pages/Register";
+import SavedPage from "../pages/SavedPage/SavedPage";
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute.js";
 import GlobalStyle from "../../styles/Global";
@@ -60,6 +61,10 @@ function App({ token }) {
         )}
         <Route path="/login" component={Login} />
         <Route path="/register" component={Registration} />
+        {/* <Route path="/about" component={About} /> */}
+        {/* <PrivateRoute path="/account" component={AccountPage} /> */}
+        <PrivateRoute path="/saved" component={SavedPage} />
+        {/* <PrivateRoute path="/search" component={SearchPage} /> */}
       </Switch>
     </div>
   );

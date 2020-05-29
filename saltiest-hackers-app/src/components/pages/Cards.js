@@ -15,16 +15,19 @@ import logo from "../assets/logo2.png";
 const CommentsContainer = styled.div`
   display: flex;
   flex-flow: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin: auto;
-  width: 100%;
+  width: 80%;
+
+  @media (max-width: 500px) {
+    justify-content: center;
+    width: 100%;
+  }
 `;
 
 const CommentWrapper = styled.div`
   margin: 2%;
-  width: 20%;
-  height: 300px;
 `;
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
@@ -35,6 +38,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
     position: "relative",
     maxWidth: 500,
+    minHeight: 200,
     marginLeft: "auto",
     overflow: "initial",
     background: "#ffffff",
@@ -84,7 +88,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   },
 }));
 
-const CommentCard = ({ commentData }) => {
+const CommentCard = ({ commentData, itemNumber }) => {
   const styles = useStyles();
   const {
     button: buttonStyles,
@@ -94,23 +98,22 @@ const CommentCard = ({ commentData }) => {
   return (
     <CommentsContainer>
       {commentData
-        .filter((item, i) => i < 20)
+        .filter((item, i) => i < itemNumber)
         .map((item) => {
           // console.log("CommentCard -> item", item);
           return (
-            <CommentWrapper>
+            <CommentWrapper key={item.comment_id}>
               <Card className={cx(styles.root, shadowStyles.root)}>
                 {/* <CardMedia
                   className={styles.media}
-                  image={logo}
-                  // image={
-                  //   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
-                  // }
+                  image={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
+                  }
                 /> */}
                 <CardContent>
                   <TextInfoContent
                     classes={contentStyles}
-                    overline={"28 MAR 2019"}
+                    // overline={"28 MAR 2019"}
                     heading={item.username}
                     body={item.comment_text}
                   />
