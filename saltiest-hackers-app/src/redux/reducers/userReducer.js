@@ -14,6 +14,7 @@ import {
 
 export const initState = {
   token: localStorage.getItem('token'),
+  userId: '',
   isLoading: false,
   error: '',
   newUser: {}
@@ -43,6 +44,7 @@ export const userReducer = (state = initState, action) => {
       return {
         ...state,
         token: action.payload.token,
+        userId: action.userId,
         isLoading: false,
         error: ''
       };
@@ -55,7 +57,8 @@ export const userReducer = (state = initState, action) => {
     case LOGOUT_USER:
       return {
         ...state,
-        token: ''
+        token: '',
+        userId: ''
       };
     case REGISTER_USER_START:
       return {

@@ -53,14 +53,14 @@ export const fetchMiscCommentData = targetEndPoint => {
 export const SAVE_COMMENT_START = 'SAVE_COMMENT_START';
 export const SAVE_COMMENT_SUCCESS = 'SAVE_COMMENT_SUCCESS';
 export const SAVE_COMMENT_FAILURE = 'SAVE_COMMENT_FAILURE';
-export const saveComment = () => {
+export const saveComment = (userID, favCommentId) => {
   return dispatch => {
     dispatch({ type: SAVE_COMMENT_START });
     axiosWithAuth()
-      .post('')
+      .post(`/api/comments/${userID}/add/${favCommentId}`)
       .then(res => {
         console.log(res);
-        // dispatch({ type: SAVE_COMMENT_SUCCESS });
+        dispatch({ type: SAVE_COMMENT_SUCCESS, payload: res.data });
       })
       .catch(err => {
         console.log(err);

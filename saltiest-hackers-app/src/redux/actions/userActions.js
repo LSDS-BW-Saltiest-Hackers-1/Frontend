@@ -1,4 +1,5 @@
 import axios from 'axios';
+import jwt from "jsonwebtoken";
 
 const apiURL = 'https://saltiest-hacker-bw.herokuapp.com';
 
@@ -31,7 +32,7 @@ export const loginUser = (username, password) => {
       .post(`${apiURL}/api/users/login`, { username: username, password: password })
       .then(res => {
         localStorage.setItem('token', res.data.token);
-        dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data });
+        dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data, userId: jwt.decode(res.data.token).sub });
       })
       .catch(err => {
         console.log(err.response);

@@ -22,7 +22,8 @@ export const initState = {
     topSaltyComments: [],
     topSweetComments: []
   },
-  userData: []
+  userData: [],
+  userSavedComments: []
 };
 
 export const commentReducer = (state = initState, action) => {
@@ -66,11 +67,14 @@ export const commentReducer = (state = initState, action) => {
       };
     case SAVE_COMMENT_START:
       return {
-        ...state
+        ...state,
+        isLoading: true
       };
     case SAVE_COMMENT_SUCCESS:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        userSavedComments: action.payload
       };
     case SAVE_COMMENT_FAILURE:
       return {
