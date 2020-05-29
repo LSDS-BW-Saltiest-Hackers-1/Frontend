@@ -118,17 +118,25 @@ const DisplayOver = styled.div({
   backgroundColor: "transparent",
   padding: "20px 20px 0 20px",
   boxSizing: "border-box",
+  textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 const BigTitle = styled.h2({
   textTransform: "uppercase",
   fontFamily: "Helvetica",
+  textAlign: "center",
+  marginBottom: "3%",
 });
 
 const SubTitle = styled.h4({
   fontFamily: "Helvetica",
   transform: "translate3d(0,50px,0)",
   transition: "transform 350ms ease",
+  marginBottom: "6%",
 });
 
 const Paragraph = styled.p({
@@ -181,7 +189,7 @@ const Wrapper = styled.div`
 `;
 
 const Whitespace = styled.div`
-  margin-top: 5%;
+  margin-top: 4%;
 `;
 
 function Home() {
@@ -192,7 +200,7 @@ function Home() {
         {/* <h1>Salt Home Page (user not logged in)</h1> */}
         <Background>
           <DisplayOver>
-            <BigTitle>I Love Salt</BigTitle>
+            <BigTitle>Lorizzle Ipsizzle</BigTitle>
             <Hover>
               <SubTitle>You could be eating salt!</SubTitle>
               <Paragraph>
