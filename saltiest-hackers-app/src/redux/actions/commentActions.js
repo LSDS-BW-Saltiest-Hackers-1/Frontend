@@ -21,7 +21,8 @@ export const fetchCommentData = targetEndPoint => {
       .get(targetEndPoint)
       .then(res => {
         console.log(res);
-        dispatch({ type: FETCH_COMMENT_DATA_SUCCESS, payload: res.data.filter((item, i) => i <= 1000) });
+        dispatch({ type: FETCH_COMMENT_DATA_SUCCESS, payload: res.data });
+        // res.data.filter((item, i) => i <= 1000)
       })
       .catch(err => {
         console.log(err);
@@ -40,7 +41,7 @@ export const fetchMiscCommentData = targetEndPoint => {
       .get(targetEndPoint)
       .then(res => {
         console.log(res);
-        dispatch({ type: FETCH_MISC_COMMENT_DATA_SUCCESS, payload: res.data })
+        dispatch({ type: FETCH_MISC_COMMENT_DATA_SUCCESS, payload: res.data, targetEndPoint: targetEndPoint })
       })
       .catch(err => {
         console.log(err);
