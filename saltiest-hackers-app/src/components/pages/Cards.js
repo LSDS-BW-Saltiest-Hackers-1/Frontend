@@ -9,51 +9,26 @@ import Button from "@material-ui/core/Button";
 import TextInfoContent from "@mui-treasury/components/content/textInfo";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
 import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
-
 import styled from "@emotion/styled/macro";
+import logo from "../assets/logo2.png";
 
 const CommentsContainer = styled.div`
   display: flex;
   flex-flow: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin: auto;
-  width: 100%;
+  width: 80%;
+
+  @media (max-width: 500px) {
+    justify-content: center;
+    width: 100%;
+  }
 `;
 
 const CommentWrapper = styled.div`
   margin: 2%;
 `;
-
-// import logo from "../assets/logo2.png";
-
-// import React from "react";
-// import styled from "styled-components"
-
-// const Container = styled.div`
-//   width: 50%;
-//   margin: auto;
-//   outline: 5px solid black;
-// `;
-
-// const Cards = () => {
-//   return (
-//     <div>
-//       {array.map((user) => {
-//         return (
-//           <Container>
-//             <p className="username">{user.username}</p>
-//             <p className="date">{user.date}</p>
-//             <p className="comment">{user.comment}</p>
-//             <p className="rating">Rating: {user.rating}</p>
-//           </Container>
-//         );
-//       })}
-//     </div>
-//   );
-// };
-
-// export default Cards;
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
@@ -63,20 +38,21 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
     position: "relative",
     maxWidth: 500,
+    minHeight: 200,
     marginLeft: "auto",
     overflow: "initial",
     background: "#ffffff",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
-    paddingBottom: spacing(2),
+    paddingBottom: spacing(1),
     [breakpoints.up("md")]: {
       flexDirection: "row",
-      paddingTop: spacing(2),
+      paddingTop: spacing(1),
     },
   },
   media: {
-    width: "88%",
+    width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: spacing(-3),
@@ -98,7 +74,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
       left: 0,
       width: "100%",
       height: "100%",
-      backgroundImage: "linear-gradient(147deg, #fe8a39 0%, #fd3838 74%)",
+      backgroundImage: "linear-gradient(147deg, #F5F5EC 0%, #FF5E00 74%)",
       borderRadius: spacing(2), // 16
       opacity: 0.5,
     },
@@ -123,21 +99,21 @@ const CommentCard = ({ commentData, itemNumber }) => {
     <CommentsContainer>
       {commentData
         .filter((item, i) => i < itemNumber)
-        .map(item => {
-        // console.log("CommentCard -> item", item);
+        .map((item) => {
+          // console.log("CommentCard -> item", item);
           return (
             <CommentWrapper key={item.comment_id}>
               <Card className={cx(styles.root, shadowStyles.root)}>
-                <CardMedia
+                {/* <CardMedia
                   className={styles.media}
                   image={
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png"
                   }
-                />
+                /> */}
                 <CardContent>
                   <TextInfoContent
                     classes={contentStyles}
-                    overline={"28 MAR 2019"}
+                    // overline={"28 MAR 2019"}
                     heading={item.username}
                     body={item.comment_text}
                   />
@@ -146,12 +122,12 @@ const CommentCard = ({ commentData, itemNumber }) => {
               </Card>
             </CommentWrapper>
           );
-      })}
+        })}
     </CommentsContainer>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   // return {
   //   commentData: state.commentReducer.commentData
   // };

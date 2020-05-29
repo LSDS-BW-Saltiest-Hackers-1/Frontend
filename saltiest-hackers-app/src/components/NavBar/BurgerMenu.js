@@ -15,9 +15,9 @@ const Burgermenu = ({ isOpen, toggleMenu }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isOpen: state.navbarReducer.isOpen
+    isOpen: state.navbarReducer.isOpen,
   };
 };
 
@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   padding-top: 0.7rem;
   cursor: pointer;
   display: block;
+  z-index: 1;
 
   & span {
     background: #fdcb6e;

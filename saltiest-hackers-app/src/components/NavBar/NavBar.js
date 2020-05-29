@@ -15,7 +15,7 @@ const NavBar = styled(animated.nav)`
   top: 0;
   left: 0;
   background: #31393c;
-  z-index: 1;
+  z-index: 2;
   font-size: 1.4rem;
 `;
 
@@ -82,7 +82,8 @@ const Navbar = ({ token, logoutUser }) => {
           <Brand />
           <NavLinks style={linkAnimation}>
             <Link to="/">Home</Link>
-            {token ? <Link to="/account">Account</Link> : <Link to="/about">About</Link>}
+            <Link to="/about">About</Link>
+            <Link to="/search">Search</Link>
             {!token && <Link to="/register">Register</Link>}
             {token && <Link to="/saved">Saved</Link>}
             {token && <Link to="/search">Search</Link>}
@@ -106,7 +107,7 @@ const Navbar = ({ token, logoutUser }) => {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.userReducer.token
+    token: state.userReducer.token,
   };
 };
 

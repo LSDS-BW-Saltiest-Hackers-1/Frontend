@@ -87,15 +87,6 @@ function Registration({
     setFormValues({ ...formValues, [name]: value });
   };
 
-  // const onCheckboxChange = (event) => {
-  //   const { name } = event.target;
-  //   const { checked } = event.target;
-  //   setFormValues({
-  //     ...formValues,
-  //     [name]: checked,
-  //   });
-  // };
-
   const onSubmit = (event) => {
     event.preventDefault();
     const newUserValues = { ...formValues };
